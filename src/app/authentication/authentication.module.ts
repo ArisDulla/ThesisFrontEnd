@@ -4,10 +4,9 @@ import { LoginComponent } from './login/login.component';
 import { RedirectGoogleComponent } from './redirect-google/redirect-google.component';
 import { RouterModule, Routes } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { provideHttpClient, withFetch } from '@angular/common/http';
-import { HttpClientModule } from '@angular/common/http';
-import { CustomInterceptor } from './custom-interceptor'
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClientModule, withInterceptors, provideHttpClient } from '@angular/common/http';
+import { BrowserModule } from '@angular/platform-browser';
+import { customInterceptor } from './interceptor/custom.interceptor'
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -23,17 +22,14 @@ const routes: Routes = [
   imports: [
     CommonModule,
     FormsModule,
+    BrowserModule,
     ReactiveFormsModule,
     RouterModule.forChild(routes),
     HttpClientModule
   ],
   providers: [
-    provideHttpClient(withFetch()), // Provide HttpClient with Fetch support
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: CustomInterceptor,
-      multi: true
-    }
+    provideHttpClient(withInterceptors([customInterceptor]))
+
   ],
 })
 export class AuthenticationModule { }

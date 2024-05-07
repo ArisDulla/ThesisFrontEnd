@@ -6,10 +6,12 @@ import { AuthenticationModule } from './authentication/authentication.module'
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { UserManagementModule } from './user-management/user-management.module'
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -19,6 +21,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     FormsModule,
     ReactiveFormsModule,
     RouterModule.forRoot([]),
+    UserManagementModule,
   ],
   providers: [
     provideClientHydration()
