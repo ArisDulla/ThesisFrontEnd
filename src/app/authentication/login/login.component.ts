@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -11,15 +12,40 @@ export class LoginComponent {
 
   loginForm: FormGroup = new FormGroup({});
   errorMessage: string | null = null;
+  successMessage: string | null = null;
 
-
-  constructor(private authService: AuthService, private formBuilder: FormBuilder) { }
+  constructor(private authService: AuthService, private formBuilder: FormBuilder, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group({
       username: ['', Validators.required],
       password: ['', Validators.required]
     });
+
+    //
+    // Error Message
+    // 
+    this.route.queryParams.subscribe((params) => {
+      this.errorMessage = params['errorMessage'] || null;
+    });
+    if (this.errorMessage) {
+      setTimeout(() => {
+        this.errorMessage = null;
+      }, 10000);
+    }
+
+    //
+    // Success Message
+    // 
+    this.route.queryParams.subscribe((params) => {
+      this.successMessage = params['successMessage'] || null;
+    });
+    if (this.successMessage) {
+      setTimeout(() => {
+        this.successMessage = null;
+      }, 10000);
+    }
+
   }
 
   //
@@ -49,6 +75,7 @@ export class LoginComponent {
         const username = this.loginForm.value.username;
         const password = this.loginForm.value.password;
         await this.authService.login(username, password);
+
       } else {
         // Mark all fields as touched to display error messages
         this.loginForm.markAllAsTouched();
@@ -63,6 +90,4 @@ export class LoginComponent {
       }
     }
   }
-
 }
-

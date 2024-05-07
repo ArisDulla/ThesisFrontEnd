@@ -132,8 +132,12 @@ export class AuthService {
     const refreshToken = localStorage.getItem('refreshToken');
     const body = { refresh: refreshToken };
 
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+    });
+
     try {
-      const response = await this.http.post<any>(this.apiUrl + "auth/jwt/refresh/", body).toPromise();
+      const response = await this.http.post<any>(this.apiUrl + "auth/jwt/refresh/", body, { headers }).toPromise();
       const accessToken = response.access;
       const newRefreshToken = response.refresh;
 
@@ -169,6 +173,37 @@ export class AuthService {
   //
   getViewUser() {
     return this.http.get<any>(this.apiUrl + "auth/users/me/")
+  }
+
+  //
+  //
+  // Logout
+  // 
+  // 
+  async logout(): Promise<void> {
+
+    const refreshToken = localStorage.getItem('refreshToken');
+    if (refreshToken) {
+
+      const body = { refresh_token: refreshToken };
+
+      const headers = new HttpHeaders({
+        'Content-Type': 'application/json',
+      });
+
+      try {
+        await this.http.post<any>(this.apiUrl + "logout/", body, { headers }).toPromise();
+
+        localStorage.removeItem('accessToken');
+        localStorage.removeItem('refreshToken');
+
+        this.router.navigate(['/login'], { queryParams: { successMessage: "You have successfully logged out." } });
+
+      } catch (error) {
+        throw error;
+
+      }
+    }
   }
 
 }

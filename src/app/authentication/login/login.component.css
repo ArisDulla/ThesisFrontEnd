@@ -1,0 +1,31 @@
+.error-message {
+  background-color: #f44336;
+  /* Red color */
+  color: black;
+  /* Text color */
+  padding: 15px 20px;
+  /* Padding */
+  border-radius: 5px;
+  /* Rounded corners */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  /* Subtle shadow */
+  font-size: 16px;
+  /* Font size */
+}
+
+.success-message {
+  background-color: #4caf50;
+  /* Green color */
+  color: white;
+  /* Text color */
+  padding: 15px 20px;
+  /* Padding */
+  border-radius: 5px;
+  /* Rounded corners */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  /* Subtle shadow */
+  font-size: 16px;
+  /* Font size */
+  margin-top: 20px;
+  /* Add margin for spacing */
+}

@@ -34,12 +34,13 @@ export const customInterceptor: HttpInterceptorFn = (req, next) => {
     catchError((error: HttpErrorResponse) => {
 
       // If unauthorized error, prompt user to refresh session
-      if (error.status === 401) {
+      if (error) {
 
         if (request.url.includes('auth/jwt/refresh')) {
           const isRefresh = window.alert("Your session has expired. Please login again.");
 
-          router.navigate(['/login']);
+          router.navigate(['/login'], { queryParams: { errorMessage: "Your session has expired. Please login again." } });
+
           localStorage.removeItem('accessToken');
           localStorage.removeItem('refreshToken');
           throw new Error('RefreshTokenStop');
