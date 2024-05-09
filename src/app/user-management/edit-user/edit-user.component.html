@@ -1,0 +1,92 @@
+<div class="update-container">
+    <div class="update-form">
+        <div *ngIf="errorMessageDepartment" class="error-message">
+            {{ errorMessageDepartment }}
+        </div>
+        <div *ngIf="successMessageDepartment" class="success-message">
+            {{ successMessageDepartment }}
+        </div>
+        <h2>Which department do you belong to?</h2>
+        <form (submit)="updateIdDepartmentOfUser()">
+            <select [(ngModel)]="selectedDepartment" [ngModelOptions]="{standalone: true}">
+                <option *ngFor="let department of departments" [value]="department.id">{{ department.name }}</option>
+            </select>
+
+            <br>
+            <br>
+            <button type="submit">Update</button>
+        </form>
+    </div>
+</div>
+<div class="update-container">
+    <div class="update-form">
+        <div *ngIf="errorMessage" class="error-message">
+            {{ errorMessage }}
+        </div>
+        <div *ngIf="successMessage" class="success-message">
+            {{ successMessage }}
+        </div>
+        <h2>Update User Information</h2>
+        <form (submit)="updateUser()">
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" [(ngModel)]="userData.email" required>
+            </div>
+
+            <div class="form-group">
+                <label for="firstName">First Name:</label>
+                <input type="text" id="firstName" name="firstName" [(ngModel)]="userData.first_name" required>
+            </div>
+            <div class="form-group">
+                <label for="lastName">Last Name:</label>
+                <input type="text" id="lastName" name="lastName" [(ngModel)]="userData.last_name" required>
+            </div>
+            <div class="form-group">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" [(ngModel)]="userData.username" required>
+            </div>
+            <div class="form-group">
+                <label for="password">password:</label>
+                <input type="password" id="password" name="password" [(ngModel)]="userData.password" required>
+            </div>
+
+            <button type="submit">
+                <span>Update</span>
+                <i class="reload-icon" *ngIf="loadingDataUser"></i> </button>
+        </form>
+    </div>
+</div>
+<div class="update-container">
+    <div class="update-form">
+        <div *ngIf="errorMessagePassword" class="error-message">
+            {{ errorMessagePassword }}
+        </div>
+        <div *ngIf="successMessagePassword" class="success-message">
+            {{ successMessagePassword }}
+        </div>
+        <h2>Update Password</h2>
+        <form (submit)="updatePassword()">
+            <div class="form-group">
+                <label for="new_password">New password:</label>
+                <input type="password" id="new_password" name="new_password" [(ngModel)]="passwordData.new_password"
+                    required>
+            </div>
+            <div class="form-group">
+                <label for="current_password">Current Password:</label>
+                <input type="password" id="current_password" name="current_password"
+                    [(ngModel)]="passwordData.current_password" required>
+            </div>
+            <button type="submit">
+                <span>Update</span>
+                <i class="reload-icon" *ngIf="loading"></i> </button>
+        </form>
+
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+</div>

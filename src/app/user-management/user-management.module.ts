@@ -5,15 +5,19 @@ import { RouterModule, Routes } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
+import { EditUserComponent } from './edit-user/edit-user.component';
 
 
 const routes: Routes = [
   { path: 'view-user', component: ViewUserComponent },
+  { path: 'edit-user', component: EditUserComponent },
+
 ];
 
 @NgModule({
   declarations: [
     ViewUserComponent,
+    EditUserComponent,
 
   ],
   imports: [

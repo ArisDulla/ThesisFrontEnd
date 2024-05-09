@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { HttpHeaders } from '@angular/common/http';
 import { BehaviorSubject } from 'rxjs';
 import { Subject } from 'rxjs';
+import { Observable } from 'rxjs';
 
 export interface ApiResponse {
   access: string;
@@ -205,5 +206,60 @@ export class AuthService {
       }
     }
   }
+  //
+  //
+  // Update User
+  //
+  //
+  updateUser(userData: any): Observable<any> {
 
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+    });
+    const body = JSON.stringify(userData);
+
+    return this.http.put<any>(this.apiUrl + "auth/users/me/", userData, { headers })
+
+  }
+
+  //
+  // Password Update
+  //
+  updatePassword(userData: any): Observable<any> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+    });
+    const body = JSON.stringify(userData);
+
+    return this.http.post<any>(this.apiUrl + "auth/users/set_password/", userData, { headers })
+  }
+
+  //
+  // Get All Departments
+  //
+  getAllDepartments() {
+    return this.http.get<any>(this.apiUrl + "api/departments/get_all/")
+  }
+
+  // 
+  // Get id Department of User
+  //
+  getIdDepartmentOfUser() {
+    return this.http.get<any>(this.apiUrl + "api/users/get_department/")
+  }
+
+
+  //
+  // update Id Department Of User
+  //
+  updateIdDepartmentOfUser(IdDepartment: any, cityzen_id: Number): Observable<any> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+    });
+
+    const body = { department: IdDepartment };
+
+    //console.log(cityzen_id)
+    return this.http.put<any>(`${this.apiUrl}api/cityzens/${cityzen_id}/update_department/`, body, { headers });
+  }
 }
