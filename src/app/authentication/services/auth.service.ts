@@ -3,7 +3,6 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 import { Router } from '@angular/router';
 import { HttpHeaders } from '@angular/common/http';
-import { BehaviorSubject } from 'rxjs';
 import { Subject } from 'rxjs';
 import { Observable } from 'rxjs';
 
@@ -262,4 +261,37 @@ export class AuthService {
     //console.log(cityzen_id)
     return this.http.put<any>(`${this.apiUrl}api/cityzens/${cityzen_id}/update_department/`, body, { headers });
   }
+
+  //
+  // Reset Password
+  //
+  resetPassword(email: any): Observable<any> {
+
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+    });
+
+    const body = { email: email };
+
+    return this.http.post<any>(this.apiUrl + "auth/users/reset_password/", body, { headers });
+
+  }
+
+  //
+  // Reset Password Confirm
+  //
+  confirmResetPassword(token: any, uid: any, newPassword: any): Observable<any> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+    });
+
+    const body = JSON.stringify({
+      uid: uid,
+      token: token,
+      new_password: newPassword
+    });
+
+    return this.http.post<any>(this.apiUrl + "auth/users/reset_password_confirm/", body, { headers });
+  }
+
 }

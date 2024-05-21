@@ -13,6 +13,16 @@ export const customInterceptor: HttpInterceptorFn = (req, next) => {
   const authToken = localStorage.getItem('accessToken');
   let request = req
 
+  //
+  // EXCEPT THESE PUBLIC ULRS 
+  //
+  const resetPasswordUrls = ['reset_password_confirm'];
+
+  // Check if the request URL includes any of the specified substrings
+  if (resetPasswordUrls.some(url => request.url.includes(url))) {
+    return next(request);
+  }
+
   // If a token exists, add it to the request headers
   if (authToken) {
     request = request.clone({
