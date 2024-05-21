@@ -300,4 +300,43 @@ export class AuthService {
     return this.http.post<any>(this.apiUrl + "auth/users/reset_password_confirm/", body, { headers });
   }
 
+  //
+  //
+  // Register
+  //
+  //
+  async register(registerForm: any): Promise<void> {
+
+
+    try {
+      const body = JSON.stringify(registerForm);
+
+      const headers = new HttpHeaders({
+        'Content-Type': 'application/json',
+      });
+
+      const response = await this.http.post<any>(this.apiUrl + "auth/users/", body, { headers }).toPromise();
+
+    } catch (error) {
+
+      throw error;
+    }
+  }
+
+  //
+  // Activation Confirm
+  //
+  activationConfirm(token: any, uid: any): Observable<any> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+    });
+
+    const body = JSON.stringify({
+      uid: uid,
+      token: token,
+    });
+
+    return this.http.post<any>(this.apiUrl + "auth/users/activation/", body, { headers });
+  }
+
 }

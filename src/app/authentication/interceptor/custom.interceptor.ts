@@ -19,7 +19,9 @@ export const customInterceptor: HttpInterceptorFn = (req, next) => {
   const resetPasswordUrls = ['reset_password_confirm', 'reset_password', '/auth/jwt/create/'];
 
   // Check if the request URL includes any of the specified substrings
-  if (resetPasswordUrls.some(url => request.url.includes(url))) {
+  if (request.method === 'POST' && request.url.includes('/auth/users/')) {
+    return next(request);
+  } else if (resetPasswordUrls.some(url => request.url.includes(url))) {
     return next(request);
   }
 
@@ -49,12 +51,13 @@ export const customInterceptor: HttpInterceptorFn = (req, next) => {
         if (request.url.includes('auth/jwt/refresh')) {
           const isRefresh = window.alert("Your session has expired. Please login again.");
 
+          localStorage.removeItem('accessToken');
+          localStorage.removeItem('refreshToken');
+
           router.navigate(['/login'], { queryParams: { errorMessage: "Your session has expired. Please login again." } }).then(() => {
             window.location.reload();
           });
 
-          localStorage.removeItem('accessToken');
-          localStorage.removeItem('refreshToken');
           throw new Error('RefreshTokenStop');
 
         } else {

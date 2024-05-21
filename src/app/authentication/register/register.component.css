@@ -1,0 +1,121 @@
+.update-container {
+    text-align: center;
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+}
+
+.update-form {
+    width: 400px;
+    /* Adjust width as needed */
+    padding: 40px;
+    /* Reduced padding */
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.update-form h2 {
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+    /* Increased margin for better spacing */
+}
+
+input[type="email"],
+input[type="text"],
+input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    margin-bottom: 15px;
+}
+
+button[type="submit"] {
+    background-color: #888;
+    color: #fff;
+    /* Changed text color to white */
+    border: none;
+    border-radius: 4px;
+    padding: 12px 24px;
+    /* Adjusted padding for better button size */
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.error-message {
+    background-color: #f44336;
+    /* Red color */
+    color: black;
+    /* Text color */
+    padding: 15px 20px;
+    /* Padding */
+    border-radius: 5px;
+    /* Rounded corners */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    /* Subtle shadow */
+    font-size: 16px;
+    /* Font size */
+    white-space: pre-line;
+    /* Κάνει την CSS να διατηρεί τις νέες γραμμές */
+
+}
+
+.success-message {
+    background-color: #4caf50;
+    /* Green color */
+    color: white;
+    /* Text color */
+    padding: 15px 20px;
+    /* Padding */
+    border-radius: 5px;
+    /* Rounded corners */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    /* Subtle shadow */
+    font-size: 16px;
+    /* Font size */
+    margin-top: 20px;
+    /* Add margin for spacing */
+}
+
+/* Style for the reload icon */
+.reload-icon {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 2px solid transparent;
+    border-top-color: #333;
+    /* Change color as needed */
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    /* Add animation for spinning effect */
+    margin-left: 5px;
+    /* Adjust margin as needed */
+}
+
+/* Keyframes for the spinning animation */
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+
+.google-button {
+    background-color: #888;
+    color: #000000;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+
+}

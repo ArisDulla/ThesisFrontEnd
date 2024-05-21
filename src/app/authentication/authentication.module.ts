@@ -8,13 +8,17 @@ import { HttpClientModule, withInterceptors, provideHttpClient } from '@angular/
 import { BrowserModule } from '@angular/platform-browser';
 import { customInterceptor } from './interceptor/custom.interceptor';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
-import { ResetPasswordConfirmComponent } from './reset-password-confirm/reset-password-confirm.component'
+import { ResetPasswordConfirmComponent } from './reset-password-confirm/reset-password-confirm.component';
+import { RegisterComponent } from './register/register.component';
+import { ActivationConfirmComponent } from './activation-confirm/activation-confirm.component'
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'google', component: RedirectGoogleComponent },
   { path: 'reset-password', component: ResetPasswordComponent },
   { path: 'reset-password-confirm/:uid/:token', component: ResetPasswordConfirmComponent },
+  { path: 'register', component: RegisterComponent },
+  { path: 'activation/:uid/:token', component: ActivationConfirmComponent },
 
 ];
 
@@ -24,6 +28,8 @@ const routes: Routes = [
     RedirectGoogleComponent,
     ResetPasswordComponent,
     ResetPasswordConfirmComponent,
+    RegisterComponent,
+    ActivationConfirmComponent,
 
   ],
   imports: [

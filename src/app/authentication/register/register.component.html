@@ -1,0 +1,28 @@
+<div class="update-container">
+    <div class="update-form">
+        <div *ngIf="errorMessage" class="error-message">
+            {{ errorMessage }}
+        </div>
+        <div *ngIf="successMessage" class="success-message">
+            {{ successMessage }}
+        </div>
+
+        <h2>Registration Form</h2>
+        <form [formGroup]="registerForm" (ngSubmit)="register()">
+            <input type="email" formControlName="email" placeholder="Email" required>
+            <input type="text" formControlName="first_name" placeholder="First Name" required>
+            <input type="text" formControlName="last_name" placeholder="Last Name" required>
+            <input type="text" formControlName="username" placeholder="Username" required>
+            <input type="password" formControlName="password" placeholder="Password" required
+                autocomplete="new-password">
+            <button type="submit">
+                <span>Submit</span>
+                <i class="reload-icon" *ngIf="loading"></i> </button>
+        </form>
+        <br>
+        <button class="google-button" (click)="continueWithGoogle()">
+            Register with Google
+        </button>
+
+    </div>
+</div>
