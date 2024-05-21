@@ -1,1 +1,9 @@
+<ng-container *ngIf="!isLoggedIn; else loggedInTemplate">
+    <app-navigation></app-navigation>
+</ng-container>
+
+<ng-template #loggedInTemplate>
+    <app-navigation-priv></app-navigation-priv>
+</ng-template>
+
 <router-outlet></router-outlet>

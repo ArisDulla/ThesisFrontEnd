@@ -1,0 +1,45 @@
+.navbar {
+  background-color: #531b1b;
+  /* Χρώμα φόντου της μπάρας πλοήγησης */
+  padding: 10px 20px;
+  /* Ανάστροφες πλευρές για το περιεχόμενο */
+}
+
+.navbar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar-brand {
+  color: #fff;
+  font-size: 1.5rem;
+  text-decoration: none;
+}
+
+.nav-item.bold .nav-link {
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.navbar-nav {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+.nav-item {
+  margin-right: 20px;
+}
+
+.nav-link {
+  color: #fff;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: color 0.3s;
+}
+
+.nav-link:hover {
+  color: #ccc;
+}

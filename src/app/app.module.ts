@@ -6,7 +6,9 @@ import { AuthenticationModule } from './authentication/authentication.module'
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { UserManagementModule } from './user-management/user-management.module'
+import { UserManagementModule } from './user-management/user-management.module';
+import { PublicComponentsModule } from './public-components/public-components.module'
+import { PrivateComponentsModule } from './private-components/private-components.module'
 
 @NgModule({
   declarations: [
@@ -22,6 +24,9 @@ import { UserManagementModule } from './user-management/user-management.module'
     ReactiveFormsModule,
     RouterModule.forRoot([]),
     UserManagementModule,
+    PublicComponentsModule,
+    PrivateComponentsModule
+
   ],
   providers: [
     provideClientHydration()

@@ -29,3 +29,88 @@
   margin-top: 20px;
   /* Add margin for spacing */
 }
+
+.update-container {
+  text-align: center;
+  margin-top: 50px;
+}
+
+.update-form {
+  display: inline-block;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.update-form h2 {
+  margin-bottom: 20px;
+}
+
+.form-group {
+  margin-bottom: 10px;
+}
+
+input[type="email"],
+input[type="text"] {
+  width: 100%;
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+input[type="password"] {
+  width: 100%;
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+button[type="submit"] {
+  background-color: #888;
+  color: #000000;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 16px;
+
+}
+
+.google-button {
+  background-color: #888;
+  color: #000000;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 16px;
+
+}
+
+.passport-header {
+  font-size: 20px;
+  font-weight: bold;
+  color: #333333;
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  font-family: 'Arial', sans-serif;
+  letter-spacing: 1px;
+}
+
+.passport-header::after {
+  content: '';
+  display: block;
+  width: 50px;
+  height: 3px;
+  margin: 10px auto 0;
+}
+
+.forgot-password-link {
+  cursor: pointer;
+  color: #000000;
+  text-decoration: none;
+  font-size: 16px;
+  transition: color 0.3s;
+}

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -14,7 +15,7 @@ export class LoginComponent {
   errorMessage: string | null = null;
   successMessage: string | null = null;
 
-  constructor(private authService: AuthService, private formBuilder: FormBuilder, private route: ActivatedRoute) { }
+  constructor(private authService: AuthService, private router: Router, private formBuilder: FormBuilder, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group({
@@ -89,5 +90,10 @@ export class LoginComponent {
 
       }
     }
+  }
+
+  async forgotPassword(): Promise<void> {
+    this.router.navigateByUrl('/reset-password')
+
   }
 }

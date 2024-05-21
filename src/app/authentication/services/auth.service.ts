@@ -84,7 +84,9 @@ export class AuthService {
         localStorage.setItem('accessToken', accessToken);
         localStorage.setItem('refreshToken', refreshToken);
 
-        this.router.navigateByUrl('/')
+        this.router.navigate(['/dashboard']).then(() => {
+          window.location.reload();
+        });
       }
 
     } catch (error) {
@@ -115,7 +117,9 @@ export class AuthService {
         localStorage.setItem('accessToken', accessToken);
         localStorage.setItem('refreshToken', refreshToken);
 
-        this.router.navigateByUrl('/')
+        this.router.navigate(['/dashboard']).then(() => {
+          window.location.reload();
+        });
 
       }
     } catch (error) {
@@ -197,7 +201,9 @@ export class AuthService {
         localStorage.removeItem('accessToken');
         localStorage.removeItem('refreshToken');
 
-        this.router.navigate(['/login'], { queryParams: { successMessage: "You have successfully logged out." } });
+        this.router.navigate(['/login'], { queryParams: { successMessage: "You have successfully logged out." } }).then(() => {
+          window.location.reload();
+        });
 
       } catch (error) {
         throw error;
