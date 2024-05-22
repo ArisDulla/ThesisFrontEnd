@@ -9,6 +9,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UserManagementModule } from './user-management/user-management.module';
 import { PublicComponentsModule } from './public-components/public-components.module'
 import { PrivateComponentsModule } from './private-components/private-components.module'
+import { ApplicationsFormsModule } from './applications-forms/applications-forms.module'
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { PrivateComponentsModule } from './private-components/private-components
     RouterModule.forRoot([]),
     UserManagementModule,
     PublicComponentsModule,
-    PrivateComponentsModule
+    PrivateComponentsModule,
+    ApplicationsFormsModule
 
   ],
   providers: [
