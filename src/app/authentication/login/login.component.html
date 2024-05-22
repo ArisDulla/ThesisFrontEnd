@@ -14,7 +14,7 @@
       <div class="form-group">
         <h1 class="passport-header">Sign in to e-Passport</h1>
         <label>
-          Username:
+          Email:
           <input type="text" formControlName="username">
         </label>
         <div *ngIf="loginForm.get('username')?.errors?.['required'] && loginForm.get('username')?.touched"
@@ -43,8 +43,14 @@
       </a>
       <br>
       <br>
+      <br>
       <a class="forgot-password-link" (click)="forgotPassword()">
         Forgot password?
+      </a>
+      <br>
+      <br>
+      <a href="/register" class="link">
+        <span class="black-text">Don’t have an account?</span> <span class="blue-text"> Sign up</span>
       </a>
     </form>
   </div>
