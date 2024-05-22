@@ -1,0 +1,19 @@
+<div *ngIf="errorMessage" class="error-message">
+    {{ errorMessage }}
+</div>
+<div class="update-container">
+    <div class="update-form">
+        <ng-container *ngIf="departments && departments.length > 0">
+            <h1>Departments Information</h1>
+        </ng-container>
+        <div *ngFor="let department of departments; let i = index">
+            <h2>Department {{ i + 1 }}</h2>
+            <p><strong>Name:</strong> {{ department.name }}</p>
+            <p><strong>Address:</strong> {{ department.address }}</p>
+            <p><strong>Phone Number: </strong> <a href="tel:{{ department.phone_number }}">{{ department.phone_number
+                    }}</a></p>
+            <p><strong>Email: </strong> <a href="mailto:{{ department.email }}">{{ department.email }}</a></p> <br>
+            <br>
+        </div>
+    </div>
+</div>
