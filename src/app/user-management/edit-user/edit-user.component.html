@@ -1,21 +1,28 @@
-<div class="update-container">
-    <div class="update-form">
-        <div *ngIf="errorMessageDepartment" class="error-message">
-            {{ errorMessageDepartment }}
-        </div>
-        <div *ngIf="successMessageDepartment" class="success-message">
-            {{ successMessageDepartment }}
-        </div>
-        <h2>Which department do you belong to?</h2>
-        <form (submit)="updateIdDepartmentOfUser()">
-            <select [(ngModel)]="selectedDepartment" [ngModelOptions]="{standalone: true}">
-                <option *ngFor="let department of departments" [value]="department.id">{{ department.name }}</option>
-            </select>
+<div *ngIf="type_user !== 'NONE'">
+    <div class="update-container">
+        <div class="update-form">
+            <div *ngIf="errorMessageDepartment" class="error-message">
+                {{ errorMessageDepartment }}
+            </div>
+            <div *ngIf="successMessageDepartment" class="success-message">
+                {{ successMessageDepartment }}
+            </div>
 
-            <br>
-            <br>
-            <button type="submit">Update</button>
-        </form>
+
+            <h2>Which department do you belong to?</h2>
+            <form (submit)="updateIdDepartmentOfUser()">
+                <select [(ngModel)]="selectedDepartment" [ngModelOptions]="{standalone: true}">
+                    <option *ngFor="let department of departments" [value]="department.id">{{ department.name }}
+                    </option>
+                </select>
+
+                <br>
+                <br>
+                <button type="submit">Update</button>
+            </form>
+
+
+        </div>
     </div>
 </div>
 <div class="update-container">

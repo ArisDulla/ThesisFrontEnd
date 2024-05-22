@@ -16,7 +16,7 @@ export class EditUserComponent implements OnInit {
 
   selectedDepartment: any;
   departments: any[] = [];
-  departmentId: any;
+  res: any;
   cityzen_id: any;
 
   //
@@ -34,7 +34,7 @@ export class EditUserComponent implements OnInit {
   //
   loading: boolean = false;
   loadingDataUser: boolean = false;
-
+  type_user: any;
 
   constructor(private authService: AuthService) { }
 
@@ -175,18 +175,20 @@ export class EditUserComponent implements OnInit {
     this.authService.getIdDepartmentOfUser().subscribe(
       (res: any) => {
 
-        this.departmentId = res;
+        this.res = res;
         //console.log(this.departmentId)
 
-        if (this.departmentId.department_id === null) {
+        if (this.res.department_id === null) {
 
           this.errorMessageDepartment = 'You are not assigned to any department. Please select one from the options below';
-          this.cityzen_id = this.departmentId.cityzen_id
+          this.cityzen_id = this.res.user_id
+          this.type_user = this.res.type_user
 
         } else {
 
-          this.selectedDepartment = this.departmentId.department_id;
-          this.cityzen_id = this.departmentId.cityzen_id
+          this.selectedDepartment = this.res.department_id;
+          this.cityzen_id = this.res.user_id
+          this.type_user = this.res.type_user
 
         }
       },

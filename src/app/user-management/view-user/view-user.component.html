@@ -1,19 +1,59 @@
-<p>view-user works!</p>
-<button (click)="logout()">LOG OUT</button>
-
-<div class="user-info">
-    <h2>User Information</h2>
-    <div *ngIf="userData">
-        <p><strong>ID:</strong> {{ userData.id }}</p>
-        <p><strong>Email:</strong> {{ userData.email }}</p>
-        <p><strong>First Name:</strong> {{ userData.first_name }}</p>
-        <p><strong>Last Name:</strong> {{ userData.last_name }}</p>
-        <p><strong>Username:</strong> {{ userData.username }}</p>
-    </div>
-    <div *ngIf="!userData">
-        <p>Loading user data...</p>
+<div class="update-container">
+    <div class="update-form">
+        <div *ngIf="errorMessageDepartment" class="error-message">
+            {{ errorMessageDepartment }}
+        </div>
+        <br>
+        <br>
+        <a href="/edit-user" class="button">
+            Edit Profile
+        </a>
+        <h2>User Information</h2>
+        <div *ngIf="userData">
+            <p><strong>Department:</strong> {{ department_name }}</p>
+            <p><strong>ID:</strong> {{ userData.id }}</p>
+            <p><strong>Email:</strong> {{ userData.email }}</p>
+            <p><strong>First Name:</strong> {{ userData.first_name }}</p>
+            <p><strong>Last Name:</strong> {{ userData.last_name }}</p>
+            <p><strong>Username:</strong> {{ userData.username }}</p>
+        </div>
+        <div *ngIf="!userData">
+            <p>Loading user data...</p>
+        </div>
     </div>
 </div>
 <div *ngIf="errorMessage" class="error-message">
     {{ errorMessage }}
+</div>
+
+<div class="update-container">
+    <div class="update-form">
+
+        <h2>Delete Account</h2>
+
+        <div *ngIf="errorMessagePassword" class="error-message">
+            {{ errorMessagePassword }}
+        </div>
+        <form (submit)="delete()">
+
+            <div class="form-group">
+                <label for="current_password">Current Password:</label>
+                <br>
+                <input type="password" id="current_password" name="current_password"
+                    [(ngModel)]="passwordData.current_password" required>
+            </div>
+            <br>
+            <button type="submit">
+                <span>Delete</span>
+                <i class="reload-icon" *ngIf="loading"></i> </button>
+        </form>
+
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
 </div>

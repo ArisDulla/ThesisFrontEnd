@@ -223,7 +223,7 @@ export class AuthService {
     });
     const body = JSON.stringify(userData);
 
-    return this.http.put<any>(this.apiUrl + "auth/users/me/", userData, { headers })
+    return this.http.put<any>(this.apiUrl + "auth/users/me/", body, { headers })
 
   }
 
@@ -236,7 +236,7 @@ export class AuthService {
     });
     const body = JSON.stringify(userData);
 
-    return this.http.post<any>(this.apiUrl + "auth/users/set_password/", userData, { headers })
+    return this.http.post<any>(this.apiUrl + "auth/users/set_password/", body, { headers })
   }
 
   //
@@ -337,6 +337,20 @@ export class AuthService {
     });
 
     return this.http.post<any>(this.apiUrl + "auth/users/activation/", body, { headers });
+  }
+
+  //
+  // Password Update
+  //
+  delete(password: any): Observable<any> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+    });
+
+    const body = JSON.stringify({ current_password: password });
+
+    return this.http.delete<any>(this.apiUrl + "auth/users/me/", { headers, body });
+
   }
 
 }

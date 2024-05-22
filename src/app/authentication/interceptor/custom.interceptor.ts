@@ -13,6 +13,16 @@ export const customInterceptor: HttpInterceptorFn = (req, next) => {
   const authToken = localStorage.getItem('accessToken');
   let request = req
 
+  //
+  // EXCEPT THESE PUBLIC ULRS 
+  //
+  const resetPasswordUrls = ['/auth/jwt/create/'];
+
+  // Check if the request URL includes any of the specified substrings
+  if (resetPasswordUrls.some(url => request.url.includes(url))) {
+    return next(request);
+  }
+
   // If a token exists, add it to the request headers
   if (authToken) {
     request = request.clone({
@@ -34,7 +44,7 @@ export const customInterceptor: HttpInterceptorFn = (req, next) => {
     catchError((error: HttpErrorResponse) => {
 
       // If unauthorized error, prompt user to refresh session
-      if (error.status === 401) {
+      if (error.status === 401 || request.url.includes('auth/jwt/refresh')) {
 
         if (request.url.includes('auth/jwt/refresh')) {
           const isRefresh = window.alert("Your session has expired. Please login again.");
