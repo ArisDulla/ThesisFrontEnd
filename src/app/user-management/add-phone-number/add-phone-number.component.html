@@ -1,0 +1,26 @@
+<div class="update-container">
+    <div class="update-form">
+        <div *ngIf="errorMessage" class="error-message">
+            {{ errorMessage }}
+        </div>
+        <div *ngIf="successMessage" class="success-message">
+            {{ successMessage }}
+        </div>
+        <div class="update-form">
+            <a href="/view-user" class="button">
+                Go BACK
+            </a>
+        </div>
+        <br>
+        <h2>Add New Number</h2>
+        <form (ngSubmit)="submitForm()">
+            <div class="form-group">
+                <label for="number">Phone Number:</label>
+                <input type="text" id="number" name="number" [(ngModel)]="phoneNumber" required pattern="[0-9]*">
+            </div>
+            <button type="submit">
+                <span>Submit</span>
+            </button>
+        </form>
+    </div>
+</div>

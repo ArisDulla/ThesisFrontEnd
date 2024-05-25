@@ -11,6 +11,7 @@ export class ViewUserComponent implements OnInit {
 
   userData: any;
   errorMessage: string | null = null;
+  errorMessage2: string | null = null;
   errorMessagePassword: string | null = null;
   successMessagePassword: string | null = null;
   errorMessageDepartment: string | null = null;
@@ -21,6 +22,7 @@ export class ViewUserComponent implements OnInit {
   resp: any;
   department_name: any;
   departments: any[] = [];
+  phoneNumbers: any;
 
   constructor(private authService: AuthService, private router: Router) { }
 
@@ -39,6 +41,24 @@ export class ViewUserComponent implements OnInit {
     this.authService.getViewUser().subscribe((res: any) => {
       this.userData = res;
       this.errorMessage = "";
+      //
+      // GET NUMBERS OF USER
+      //
+      this.authService.getNumbersOfUser().subscribe((res: any) => {
+
+        //console.log(res)
+
+        this.phoneNumbers = res;
+
+        //this.userData = res;
+        //this.errorMessage = "";
+      },
+        (error: any) => {
+          this.errorMessage = 'Oops! Something went wrong '
+        });
+      //
+      //
+      //
     },
       (error: any) => {
 
@@ -68,6 +88,7 @@ export class ViewUserComponent implements OnInit {
 
         }
       });
+
   }
 
   async delete(): Promise<void> {
@@ -104,6 +125,21 @@ export class ViewUserComponent implements OnInit {
           this.errorMessagePassword = 'Oops! Something went wrong';
 
         }
+      });
+  }
+
+  async editNumber(phoneNumber_id: any): Promise<void> {
+    this.router.navigate(['/edit-phone-number'], { state: { phoneNumber_id: phoneNumber_id } });
+  }
+
+  async removeNumberOfUser(phoneNumber_id: any): Promise<void> {
+    this.authService.removeNumberOfUser(phoneNumber_id).subscribe((res: any) => {
+
+      window.location.reload();
+      this.errorMessage2 = null
+    },
+      (error: any) => {
+        this.errorMessage2 = 'Oops! Something went wrong '
       });
   }
 

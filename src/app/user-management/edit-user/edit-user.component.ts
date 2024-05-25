@@ -104,7 +104,6 @@ export class EditUserComponent implements OnInit {
         for (const field in error.error) {
           errorMessage += field + " " + error.error[field][0] + '\n';
 
-          //console.log(error)
         }
 
         this.errorMessage = errorMessage;
@@ -144,7 +143,6 @@ export class EditUserComponent implements OnInit {
         for (const field in error.error) {
           errorMessage += field + " " + error.error[field][0] + '\n';
 
-          //console.log(error)
         }
 
         this.errorMessagePassword = errorMessage;

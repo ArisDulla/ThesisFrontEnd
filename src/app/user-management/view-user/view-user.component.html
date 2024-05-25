@@ -20,6 +20,22 @@
             <p><strong>Last Name:</strong> {{ userData.last_name }}</p>
             <p><strong>Username:</strong> {{ userData.username }}</p>
         </div>
+        <hr>
+        <ng-container *ngIf="phoneNumbers.length > 0">
+            <h2>My Numbers</h2>
+        </ng-container>
+        <div *ngIf="errorMessage2" class="error-message">
+            {{ errorMessage2 }}
+        </div>
+        <br>
+        <a href="/add-phone-number" class="pointer-cursor">Add Number</a>
+        <div *ngFor="let phoneNumber of phoneNumbers">
+            <p><strong>Number:</strong> {{ phoneNumber.number }}<a (click)="editNumber(phoneNumber.id)"
+                    class="pointer-cursor"> Edit Number</a><a (click)="removeNumberOfUser(phoneNumber.id)"
+                    class="pointer2-cursor"> Remove Number</a></p>
+
+        </div>
+
         <div *ngIf="!userData">
             <p>Loading user data...</p>
         </div>

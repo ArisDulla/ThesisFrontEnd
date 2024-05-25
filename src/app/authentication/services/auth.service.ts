@@ -352,5 +352,53 @@ export class AuthService {
     return this.http.delete<any>(this.apiUrl + "auth/users/me/", { headers, body });
 
   }
+  //
+  // Get all Numbers Of User
+  // 
+  getNumbersOfUser(): Observable<any> {
+    return this.http.get<any>(this.apiUrl + "api/phoneNumber/list-user/")
+  }
+
+  //
+  // Get 1 Number Of User
+  // 
+  getNumberOfUser(phoneNumber_id: any) {
+    return this.http.get<any>(`${this.apiUrl}api/phoneNumber/${phoneNumber_id}/`)
+
+  }
+
+  //
+  // Update Number Of User
+  // 
+  updateNumberOfUser(phoneNumber_id: any, phoneNumber: any) {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+    });
+
+    const body = { number: phoneNumber };
+    return this.http.put<any>(`${this.apiUrl}api/phoneNumber/${phoneNumber_id}/`, body, { headers })
+
+  }
+
+  //
+  // Add New Number Of User
+  //
+  addNewNumberOfUser(phoneNumber: any): Observable<any> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+    });
+
+    const body = { number: phoneNumber };
+    return this.http.post<any>(`${this.apiUrl}api/phoneNumber/`, body, { headers })
+  }
+
+  //
+  // Delete Number of User
+  //
+  removeNumberOfUser(phoneNumber_id: any): Observable<any> {
+
+    return this.http.delete<any>(`${this.apiUrl}api/phoneNumber/${phoneNumber_id}/`)
+  }
+
 
 }
