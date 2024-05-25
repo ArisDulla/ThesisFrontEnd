@@ -7,7 +7,9 @@
             <div *ngIf="successMessageDepartment" class="success-message">
                 {{ successMessageDepartment }}
             </div>
-
+            <div class="update-form">
+                <a class="button" href="/view-user">Go to BACK</a>
+            </div>
 
             <h2>Which department do you belong to?</h2>
             <form (submit)="updateIdDepartmentOfUser()">
@@ -20,8 +22,6 @@
                 <br>
                 <button type="submit">Update</button>
             </form>
-
-
         </div>
     </div>
 </div>
@@ -61,10 +61,7 @@
                 <span>Update</span>
                 <i class="reload-icon" *ngIf="loadingDataUser"></i> </button>
         </form>
-    </div>
-</div>
-<div class="update-container">
-    <div class="update-form">
+        <hr>
         <div *ngIf="errorMessagePassword" class="error-message">
             {{ errorMessagePassword }}
         </div>
@@ -87,13 +84,9 @@
                 <span>Update</span>
                 <i class="reload-icon" *ngIf="loading"></i> </button>
         </form>
-
+        <br>
+        <br>
+        <br>
+        <br>
     </div>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
 </div>

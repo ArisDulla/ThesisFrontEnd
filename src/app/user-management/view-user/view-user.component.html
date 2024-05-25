@@ -3,6 +3,9 @@
         <div *ngIf="errorMessageDepartment" class="error-message">
             {{ errorMessageDepartment }}
         </div>
+        <div class="update-form">
+            <a class="button" href="/dashboard">Go to BACK</a>
+        </div>
         <br>
         <br>
         <a href="/edit-user" class="button">
@@ -20,19 +23,16 @@
         <div *ngIf="!userData">
             <p>Loading user data...</p>
         </div>
-    </div>
-</div>
-<div *ngIf="errorMessage" class="error-message">
-    {{ errorMessage }}
-</div>
-
-<div class="update-container">
-    <div class="update-form">
-
+        <br>
+        <hr>
         <h2>Delete Account</h2>
 
         <div *ngIf="errorMessagePassword" class="error-message">
             {{ errorMessagePassword }}
+        </div>
+
+        <div *ngIf="errorMessage" class="error-message">
+            {{ errorMessage }}
         </div>
         <form (submit)="delete()">
 
@@ -49,11 +49,4 @@
         </form>
 
     </div>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
 </div>

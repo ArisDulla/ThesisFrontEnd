@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PassportViewService } from '../services/passport-view.service'
-import { DatePipe } from '@angular/common'; 
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-issuance-passport-view',
@@ -39,9 +39,9 @@ export class IssuancePassportViewComponent implements OnInit {
     }
   }
 
-  downloadFile(docType: string, passportId: number): void {
+  downloadFile(docType: string, passportId: number, application_type: string): void {
 
-    this.authService.getIssuancePassportFile(docType, passportId).subscribe(
+    this.authService.getIssuancePassportFile(docType, passportId, application_type).subscribe(
       response => {
 
         this.downLoadFile22(response, "application/ms-excel");

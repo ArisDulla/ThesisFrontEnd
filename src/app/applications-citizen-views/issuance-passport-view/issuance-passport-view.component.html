@@ -23,7 +23,8 @@
       <div class="form-group" *ngIf="passportDetails.id_card_copy">
 
         <label>Φωτοαντίγραφο δύο όψεων του δελτίου αστυνομικής ταυτότητας στην ίδια σελίδα:</label>
-        <p (click)="downloadFile('id_card_copy', passportDetails.id)" class="download-link">Download ID Card Copy
+        <p (click)="downloadFile('id_card_copy', passportDetails.id, passportDetails.application_type)"
+          class="download-link">Download ID Card Copy
         </p>
 
       </div>
@@ -31,14 +32,16 @@
       <div class="form-group" *ngIf="passportDetails.applicant_photo">
 
         <label>Μια πρόσφατη έγχρωμη φωτογραφία 4x6 εκ. συγκεκριμένων τεχνικών προδιαγραφών:</label>
-        <p (click)="downloadFile('applicant_photo', passportDetails.id)" class="download-link">Download Photo</p>
+        <p (click)="downloadFile('applicant_photo', passportDetails.id , passportDetails.application_type)"
+          class="download-link">Download Photo</p>
 
       </div>
 
       <div class="form-group" *ngIf="passportDetails.payment_receipt">
 
         <label>Παράβολα είσπραξης εσόδων:</label>
-        <p (click)="downloadFile('payment_receipt', passportDetails.id)" class="download-link">Download Payment
+        <p (click)="downloadFile('payment_receipt', passportDetails.id , passportDetails.application_type)"
+          class="download-link">Download Payment
           Receipt</p>
 
       </div>
@@ -46,7 +49,8 @@
       <div class="form-group" *ngIf="passportDetails.application_form">
 
         <label>Αίτηση έκδοσης διαβατηρίου που εκτυπώνεται στα Γραφεία Υποδοχής Αιτημάτων:</label>
-        <p (click)="downloadFile('application_form', passportDetails.id)" class="download-link">Download Application
+        <p (click)="downloadFile('application_form', passportDetails.id,passportDetails.application_type)"
+          class="download-link">Download Application
           Form</p>
 
       </div>
@@ -54,7 +58,8 @@
       <div class="form-group" *ngIf="passportDetails.old_passport_pdf">
 
         <label>Παλαιό διαβατήριο:</label>
-        <p (click)="downloadFile('old_passport_pdf', passportDetails.id)" class="download-link">Download Old
+        <p (click)="downloadFile('old_passport_pdf', passportDetails.id,passportDetails.application_type)"
+          class="download-link">Download Old
           Passport</p>
 
       </div>
@@ -62,7 +67,8 @@
       <div class="form-group" *ngIf="passportDetails.police_report">
 
         <label>Bεβαίωση Ελληνικής Αρχής στην οποία δηλώθηκε η κλοπή, η απώλεια, ή η ολική καταστροφή:</label>
-        <p (click)="downloadFile('police_report', passportDetails.id)" class="download-link">Download Old
+        <p (click)="downloadFile('police_report', passportDetails.id,passportDetails.application_type)"
+          class="download-link">Download Old
           Passport</p>
 
       </div>
@@ -70,7 +76,8 @@
       <div class="form-group" *ngIf="passportDetails.caregiver_address_certification">
 
         <label>Yπεύθυνη Δήλωση (την αναγραφείσα διεύθυνση κατοικίας του ανηλίκου):</label>
-        <p (click)="downloadFile('caregiver_address_certification', passportDetails.id)" class="download-link">
+        <p (click)="downloadFile('caregiver_address_certification', passportDetails.id,passportDetails.application_type)"
+          class="download-link">
           Download Address Certification</p>
 
       </div>
@@ -78,7 +85,8 @@
       <div class="form-group" *ngIf="passportDetails.convicted_declaration">
 
         <label>Yπεύθυνη Δήλωση (Αν έχει καταδικαστεί τελεσίδικα για πλαστογραφία, πλαστογραφία πιστοποιητικών):</label>
-        <p (click)="downloadFile('convicted_declaration', passportDetails.id)" class="download-link">Download
+        <p (click)="downloadFile('convicted_declaration', passportDetails.id,passportDetails.application_type)"
+          class="download-link">Download
           Convicted Declaration</p>
 
       </div>
@@ -87,7 +95,8 @@
 
         <label>Yπεύθυνη Δήλωση (Για την αυτεπάγγελτη αναζήτηση μέσω του Ολοκληρωμένου Πληροφοριακού
           Συστήματος):</label>
-        <p (click)="downloadFile('minor_age_declaration', passportDetails.id)" class="download-link">Download
+        <p (click)="downloadFile('minor_age_declaration', passportDetails.id,passportDetails.application_type)"
+          class="download-link">Download
           Age Declaration</p>
 
       </div>

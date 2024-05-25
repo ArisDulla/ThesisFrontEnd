@@ -60,8 +60,31 @@ export class PassportViewService {
   //
   // GET file
   //
-  getIssuancePassportFile(docType: string, passportId: number): Observable<ArrayBuffer> {
-    const url = `${this.apiUrl}api/issuance/${passportId}/download-file/${docType}/`;
+  getIssuancePassportFile(docType: string, passportId: number, application_type: string): Observable<ArrayBuffer> {
+
+    let endpoint: string;
+
+    switch (application_type) {
+      case 'Issuance':
+        endpoint = 'issuance-passport';
+        break;
+      case 'Renewal':
+        endpoint = 'renewal-passport';
+        break;
+      case 'Replacement':
+        endpoint = 'replacement-passport';
+        break;
+      case 'TheftOrLoss':
+        endpoint = 'theftOrLoss-passport';
+        break;
+      case 'IssuanceMinors':
+        endpoint = 'issuanceMinors-passport';
+        break;
+      default:
+        throw new Error('Invalid application type');
+    }
+
+    const url = `${this.apiUrl}api/${endpoint}/${passportId}/download-file/${docType}/`;
     const headers = new HttpHeaders().set('Authorization', 'Bearer ');
 
     return this.http.get(url, {
