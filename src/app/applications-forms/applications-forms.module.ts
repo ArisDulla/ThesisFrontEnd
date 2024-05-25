@@ -5,16 +5,20 @@ import { IssuancePassportComponent } from './issuance-passport/issuance-passport
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RenewalPassportComponent } from './renewal-passport/renewal-passport.component';
+import { ReplacementPassportComponent } from './replacement-passport/replacement-passport.component';
+
 const routes: Routes = [
   { path: 'issuance-passport', component: IssuancePassportComponent },
   { path: 'renewal-passport', component: RenewalPassportComponent },
+  { path: 'replacement-passport', component: ReplacementPassportComponent },
 
 ];
 
 @NgModule({
   declarations: [
     IssuancePassportComponent,
-    RenewalPassportComponent
+    RenewalPassportComponent,
+    ReplacementPassportComponent
   ],
   imports: [
     CommonModule,
