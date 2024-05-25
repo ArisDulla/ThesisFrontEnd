@@ -1,8 +1,9 @@
 <div class="update-container">
     <div class="update-form">
-        <div *ngIf="errorMessage" class="error-message">
-            {{ errorMessage }}
-        </div>
+        <div *ngIf="errorMessage" class="error-message" [innerHTML]="errorMessage"></div>
+
+        <a class="back-button" href="/dashboard">Go to BACK</a>
+
         <form (ngSubmit)="onSubmit()" #pdfForm="ngForm">
             <h1>1. Έκδοση διαβατηρίου για ενήλικες</h1>
             <div class="form-group">

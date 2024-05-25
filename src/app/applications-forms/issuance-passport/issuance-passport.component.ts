@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { PassportService } from '../services/passport.service'
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-issuance-passport',
@@ -14,7 +15,7 @@ export class IssuancePassportComponent {
   errorMessage: string | null = null;
 
   constructor(
-    private passportService: PassportService
+    private passportService: PassportService, private router: Router
   ) { }
 
 
@@ -50,6 +51,7 @@ export class IssuancePassportComponent {
         (data: any) => {
 
           this.errorMessage = null;
+          this.router.navigate(['/issuance-view-citizen-list'], { queryParams: { successMessage: "Successfully submitted the application!" } })
           console.log(data)
 
         },
@@ -62,12 +64,19 @@ export class IssuancePassportComponent {
           //
           for (const field in error.error) {
             errorMessage += field + " " + error.error[field][0] + '\n';
+
+            if (field === 'Notify') {
+              const url = '/edit-user'; // Replace with the dynamic URL
+              errorMessage += `Go to <a href="${url}">Edit my profile</a>.`;
+            }
           }
 
           this.errorMessage = errorMessage;
 
         }
       );
+    } else {
+      this.errorMessage = "Must complete all fields."
     }
   }
 

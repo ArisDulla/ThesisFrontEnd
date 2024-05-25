@@ -10,6 +10,7 @@ import { UserManagementModule } from './user-management/user-management.module';
 import { PublicComponentsModule } from './public-components/public-components.module'
 import { PrivateComponentsModule } from './private-components/private-components.module'
 import { ApplicationsFormsModule } from './applications-forms/applications-forms.module'
+import { ApplicationsCitizenViewsModule } from './applications-citizen-views/applications-citizen-views.module'
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { ApplicationsFormsModule } from './applications-forms/applications-forms
     UserManagementModule,
     PublicComponentsModule,
     PrivateComponentsModule,
-    ApplicationsFormsModule
+    ApplicationsFormsModule,
+    ApplicationsCitizenViewsModule
 
   ],
   providers: [

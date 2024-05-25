@@ -1,0 +1,48 @@
+<div *ngIf="successMessage" class="success-message">
+    {{ successMessage }}
+</div>
+
+<div class="update-container">
+    <div class="update-form">
+        <a class="back-button" href="/dashboard">Go to BACK</a>
+
+        <div *ngIf="passportDetailsList.length === 0; else applicationList">
+            <p>You have no applications</p>
+        </div>
+
+        <ng-template #applicationList>
+            <h1>My applications Passport </h1>
+
+            <div class="table-responsive">
+                <table class="table">
+                    <tr>
+                        <td>ID:</td>
+                        <td>Application Type</td>
+                        <td>Status:</td>
+                        <td>Submitted At:</td>
+                        <td>VIEW</td>
+                        <td>ACTION</td>
+
+                    </tr>
+                    <tr *ngFor="let passportDetails of passportDetailsList">
+                        <td>{{ passportDetails.id }}</td>
+                        <td>{{ getApplicationTypeDescription(passportDetails.application_type) }}</td>
+                        <td
+                            [ngClass]="{'rejected': passportDetails.status === 'rejected', 'pending': passportDetails.status === 'pending', 'canceled': passportDetails.status === 'canceled', 'final-approval': passportDetails.status === 'final_approval'}">
+                            {{ passportDetails.status }}</td>
+                        <td>{{ formatDate(passportDetails.submitted_at) }}</td>
+                        <td>
+                            <a (click)="viewDetails(passportDetails.id,passportDetails.application_type)"
+                                class="view-link">View</a>
+                        </td>
+                        <td>
+                            <ng-container *ngIf="passportDetails.status === 'pending'">
+                                <a (click)="cancel_application(passportDetails.id)" class="view-link">Cancel</a>
+                            </ng-container>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </ng-template>
+    </div>
+</div>
