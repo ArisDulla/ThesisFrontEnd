@@ -1,0 +1,35 @@
+<div class="update-container">
+    <div class="update-form">
+        <div *ngIf="errorMessage" class="error-message" [innerHTML]="errorMessage"></div>
+
+        <a class="back-button" href="/dashboard">Go to BACK</a>
+
+        <form (ngSubmit)="onSubmit()" #pdfForm="ngForm">
+            <h1>2. Έκδοση διαβατηρίου για ανανέωσης διαβατηρίου</h1>
+            <div class="form-group">
+                <label for="id_card_copy">Φωτοαντίγραφο δύο όψεων του δελτίου αστυνομικής ταυτότητας στην ίδια
+                    σελίδα:</label>
+                <input type="file" id="id_card_copy" (change)="onFileChange($event, 1)" accept=".pdf" required />
+            </div>
+
+            <div class="form-group">
+                <label for="applicant_photo">Μια πρόσφατη έγχρωμη φωτογραφία 4x6 εκ. συγκεκριμένων τεχνικών
+                    προδιαγραφών.</label>
+                <input type="file" id="applicant_photo" (change)="onFileChange($event, 2)" accept=".jpg, .jpeg, .png"
+                    required />
+            </div>
+
+            <div class="form-group">
+                <label for="payment_receipt">Παράβολα είσπραξης εσόδων:</label>
+                <input type="file" id="payment_receipt" (change)="onFileChange($event, 3)" accept=".pdf" required />
+            </div>
+
+            <div class="form-group">
+                <label for="old_passport_pdf">Προσκομίζοντας το παλαιό διαβατήριο</label>
+                <input type="file" id="old_passport_pdf" (change)="onFileChange($event, 4)" accept=".pdf" required />
+            </div>
+
+            <button type="submit" [disabled]="!pdfForm.form.valid">Submit</button>
+        </form>
+    </div>
+</div>

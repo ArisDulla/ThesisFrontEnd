@@ -22,5 +22,12 @@ export class PassportService {
     return this.http.post<any>(this.apiUrl + 'api/issuance-passport/', formData);
   }
 
+  //
+  // Renewal Passport
+  //
+  renewalPassport(formData: any): Observable<any> {
+    return this.http.post<any>(this.apiUrl + 'api/renewal-passport/', formData);
+  }
+
 
 }
