@@ -12,6 +12,7 @@ export class ViewUserComponent implements OnInit {
   userData: any;
   errorMessage: string | null = null;
   errorMessage2: string | null = null;
+  errorMessage3: string | null = null;
   errorMessagePassword: string | null = null;
   successMessagePassword: string | null = null;
   errorMessageDepartment: string | null = null;
@@ -22,7 +23,8 @@ export class ViewUserComponent implements OnInit {
   resp: any;
   department_name: any;
   departments: any[] = [];
-  phoneNumbers: any;
+  phoneNumbers: any[] = [];
+  addresses: any[] = [];
 
   constructor(private authService: AuthService, private router: Router) { }
 
@@ -50,25 +52,26 @@ export class ViewUserComponent implements OnInit {
 
         this.phoneNumbers = res;
 
-        //this.userData = res;
-        //this.errorMessage = "";
       },
         (error: any) => {
-          this.errorMessage = 'Oops! Something went wrong '
+          // Error catch at interceptor
         });
       //
+      // GET ADDRESSES OF USER
       //
-      //
+      this.authService.getAddressesOfUser().subscribe((res: any) => {
+
+        //console.log(res)
+
+        this.addresses = res;
+
+      },
+        (error: any) => {
+          // Error catch at interceptor
+        });
     },
       (error: any) => {
-
-        if (error.error && error.error.detail) {
-          this.errorMessage = error.error.detail;
-
-        } else {
-          this.errorMessage = 'Oops! Something went wrong '
-
-        }
+        // Error catch at interceptor
       });
 
     this.authService.getIdDepartmentOfUser().subscribe(
@@ -143,5 +146,19 @@ export class ViewUserComponent implements OnInit {
       });
   }
 
+  async editAddress(address_id: any): Promise<void> {
+    this.router.navigate(['/edit-address'], { state: { address_id: address_id } });
+  }
+  
+  async removeAddress(address_id: any): Promise<void> {
+    this.authService.removeAddress(address_id).subscribe((res: any) => {
+
+      window.location.reload();
+      this.errorMessage3 = null
+    },
+      (error: any) => {
+        this.errorMessage3 = 'Oops! Something went wrong '
+      });
+  }
 
 }

@@ -400,5 +400,67 @@ export class AuthService {
     return this.http.delete<any>(`${this.apiUrl}api/phoneNumber/${phoneNumber_id}/`)
   }
 
+  //
+  // Get ALL Addresses Of User
+  // 
+  getAddressesOfUser(): Observable<any> {
+    return this.http.get<any>(this.apiUrl + "api/address/list-user/")
+  }
+
+  //
+  // Remove Address
+  // 
+  removeAddress(address_id: any): Observable<any> {
+
+    return this.http.delete<any>(`${this.apiUrl}api/address/${address_id}/`)
+
+  }
+
+  //
+  // Add New Address
+  // 
+  addNewAddress(address_data: any): Observable<any> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+    });
+
+    const body = address_data;
+    return this.http.post<any>(`${this.apiUrl}api/address/`, body, { headers })
+  }
+
+  //
+  // Get 1 Address Of User
+  // 
+  getAddressOfUser(address_id: any) {
+    return this.http.get<any>(`${this.apiUrl}api/address/${address_id}/`)
+
+  }
+
+  //
+  // Update Address Of User
+  //  
+  updateAddressOfUser(address: any, userData: any): Observable<any> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+    });
+
+    const body = userData;
+    return this.http.put<any>(`${this.apiUrl}api/address/${address}/`, body, { headers })
+  }
+
+
+  //
+  // Verify Token
+  // 
+  //
+  verifyToken(): Observable<any> {
+    const accessToken = localStorage.getItem('accessToken');
+    const body = { token: accessToken };
+
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+    });
+    return this.http.post<any>(this.apiUrl + "auth/jwt/verify/", body, { headers });
+  }
 
 }

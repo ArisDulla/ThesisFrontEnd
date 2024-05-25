@@ -8,9 +8,13 @@
         </div>
         <br>
         <br>
-        <a href="/edit-user" class="button">
-            Edit Profile
-        </a>
+        <div class="update-form">
+
+            <a href="/edit-user" class="button">
+                Edit Profile
+            </a>
+        </div>
+
         <h2>User Information</h2>
         <div *ngIf="userData">
             <p><strong>Department:</strong> {{ department_name }}</p>
@@ -38,6 +42,22 @@
 
         <div *ngIf="!userData">
             <p>Loading user data...</p>
+        </div>
+
+        <hr>
+        <ng-container *ngIf="addresses.length > 0">
+            <h2>My Addresses</h2>
+        </ng-container>
+        <div *ngIf="errorMessage3" class="error-message">
+            {{ errorMessage3 }}
+        </div>
+        <br>
+        <a href="/add-address" class="pointer-cursor">Add Address</a>
+        <div *ngFor="let address of addresses">
+            <p><strong>{{ address.street }}</strong> {{ address.street_number }} {{ address.region_name }}<a
+                    (click)="editAddress(address.id)" class="pointer-cursor"> Edit Address</a><a
+                    (click)="removeAddress(address.id)" class="pointer2-cursor"> Remove Address</a></p>
+
         </div>
         <br>
         <hr>

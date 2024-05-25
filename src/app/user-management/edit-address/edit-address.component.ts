@@ -2,14 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../authentication/services/auth.service';
 
 @Component({
-  selector: 'app-edit-phone-number',
-  templateUrl: './edit-phone-number.component.html',
-  styleUrl: './edit-phone-number.component.css'
+  selector: 'app-edit-address',
+  templateUrl: './edit-address.component.html',
+  styleUrl: './edit-address.component.css'
 })
-export class EditPhoneNumberComponent implements OnInit {
+export class EditAddressComponent implements OnInit {
 
-  phoneNumber_id: string | null = null;
-  phoneNumber: any;
+  address_id: string | null = null;
+  userData: any = {};
   errorMessage: string | null = null;
   successMessage: string | null = null;
   firstErrorMessage: string | null = null;
@@ -18,26 +18,24 @@ export class EditPhoneNumberComponent implements OnInit {
 
   ngOnInit(): void {
     const navigation = window.history.state;
-    this.phoneNumber_id = navigation.phoneNumber_id;
-
-    if (this.phoneNumber_id) {
-      this.getNumberOfUser();
+    this.address_id = navigation.address_id;
+    if (this.address_id) {
+      this.getaddressOfUser();
 
       this.authService.$refreshTokenReceived.subscribe(() => {
 
-        this.getNumberOfUser();
+        this.getaddressOfUser();
 
       });
     } else {
       this.firstErrorMessage = "Oops! Something went wrong.";
-
     }
   }
   async submitForm() {
 
-    this.authService.updateNumberOfUser(this.phoneNumber_id, this.phoneNumber.number).subscribe((res: any) => {
+    this.authService.updateAddressOfUser(this.address_id, this.userData).subscribe((res: any) => {
 
-      this.successMessage = "Number updated successfully";
+      this.successMessage = "Address updated successfully";
       this.errorMessage = null;
 
     },
@@ -60,16 +58,13 @@ export class EditPhoneNumberComponent implements OnInit {
 
   }
 
-  getNumberOfUser() {
-    this.authService.getNumberOfUser(this.phoneNumber_id).subscribe((res: any) => {
-
-      this.phoneNumber = res;
+  getaddressOfUser() {
+    this.authService.getAddressOfUser(this.address_id).subscribe((res: any) => {
+      
+      this.userData = res;
     },
       (error: any) => {
         // Error catch at interceptor
       });
-
   }
-
-
 }

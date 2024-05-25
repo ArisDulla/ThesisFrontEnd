@@ -8,6 +8,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { EditUserComponent } from './edit-user/edit-user.component';
 import { EditPhoneNumberComponent } from './edit-phone-number/edit-phone-number.component';
 import { AddPhoneNumberComponent } from './add-phone-number/add-phone-number.component';
+import { AddAddressComponent } from './add-address/add-address.component';
+import { EditAddressComponent } from './edit-address/edit-address.component';
 
 
 const routes: Routes = [
@@ -15,6 +17,8 @@ const routes: Routes = [
   { path: 'edit-user', component: EditUserComponent },
   { path: 'edit-phone-number', component: EditPhoneNumberComponent },
   { path: 'add-phone-number', component: AddPhoneNumberComponent },
+  { path: 'add-address', component: AddAddressComponent },
+  { path: 'edit-address', component: EditAddressComponent },
 
 ];
 
@@ -24,6 +28,8 @@ const routes: Routes = [
     EditUserComponent,
     EditPhoneNumberComponent,
     AddPhoneNumberComponent,
+    AddAddressComponent,
+    EditAddressComponent,
 
   ],
   imports: [
