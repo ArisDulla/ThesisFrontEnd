@@ -43,5 +43,13 @@ export class PassportService {
     return this.http.post<any>(this.apiUrl + 'api/theftOrLoss-passport/', formData);
   }
 
+  //
+  // Issuance Minors Passport
+  //
+  issuanceMinorsPassport(formData: any): Observable<any> {
+    return this.http.post<any>(this.apiUrl + 'api/issuanceMinors-passport/', formData);
+  }
+
+
 
 }

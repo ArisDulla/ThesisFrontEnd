@@ -77,7 +77,7 @@ export class IssuancePassportListComponent {
       case 'TheftOrLoss':
         return 'Κλοπής ή απώλειας διαβατηρίου';
       case 'IssuanceMinors':
-        return '5. οι ανήλικοι για την έκδοση διαβατηρίου';
+        return 'Έκδοσης διαβατηρίου για Aνήλικoυς';
       default:
         return '';
     }
