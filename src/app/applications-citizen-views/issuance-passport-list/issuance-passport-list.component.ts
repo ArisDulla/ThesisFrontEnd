@@ -36,6 +36,10 @@ export class IssuancePassportListComponent {
     await this.router.navigate(['/issuance-view-citizen-view'], { state: { passportId: passportId, application_type: passportType } });
   }
 
+  async editDetails(passportId: string, passportType: string): Promise<void> {
+    await this.router.navigate(['/issuance-view-edit'], { state: { passportId: passportId, application_type: passportType } });
+  }
+
   async cancel_application(passportId: string): Promise<void> {
 
     this.authService.cancel_application(passportId).subscribe(
@@ -56,7 +60,8 @@ export class IssuancePassportListComponent {
 
   getIssuancePassport() {
     this.authService.getIssuancePassport().subscribe((res: any) => {
-      console.log(res)
+
+      //console.log(res)
       this.passportDetailsList = res;
     },
       (error: any) => {

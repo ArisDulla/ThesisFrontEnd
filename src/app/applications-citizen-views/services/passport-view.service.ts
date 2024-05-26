@@ -104,5 +104,36 @@ export class PassportViewService {
     return this.http.post<any>(`${this.apiUrl}api/issuance/${id}/cancel_application/`, { headers });
   }
 
+  //
+  // Issuance Passport
+  //
+  issuancePassport(formData: any, application_type: any, passportId: any): Observable<any> {
+
+    let endpoint: string;
+
+    switch (application_type) {
+      case 'Issuance':
+        endpoint = 'issuance-passport';
+        break;
+      case 'Renewal':
+        endpoint = 'renewal-passport';
+        break;
+      case 'Replacement':
+        endpoint = 'replacement-passport';
+        break;
+      case 'TheftOrLoss':
+        endpoint = 'theftOrLoss-passport';
+        break;
+      case 'IssuanceMinors':
+        endpoint = 'issuanceMinors-passport';
+        break;
+      default:
+        throw new Error('Invalid application type');
+    }
+
+    return this.http.put<any>(`${this.apiUrl}api/${endpoint}/${passportId}/`, formData);
+
+  }
+
 
 }

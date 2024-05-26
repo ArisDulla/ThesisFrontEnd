@@ -65,10 +65,6 @@ export class RenewalPassportComponent {
           for (const field in error.error) {
             errorMessage += field + " " + error.error[field][0] + '\n';
 
-            if (field === 'Notify') {
-              const url = '/edit-user'; // Replace with the dynamic URL
-              errorMessage += `Go to <a href="${url}">Edit my profile</a>.`;
-            }
           }
 
           this.errorMessage = errorMessage;

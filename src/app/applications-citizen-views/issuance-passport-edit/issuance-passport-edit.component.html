@@ -1,0 +1,146 @@
+<div *ngIf="errorMessage; else detailsTemplate" class="error-message">
+    {{ errorMessage }}
+</div>
+
+
+
+
+<ng-template #detailsTemplate>
+    <div class="update-container">
+        <div class="update-form">
+            <a class="back-button" href="/issuance-view-citizen-list">Go to BACK</a>
+            <form (ngSubmit)="onSubmit()" #pdfForm="ngForm">
+                <div *ngIf="errorMessageEdit" class="error-message">
+                    {{ errorMessageEdit }}
+                </div>
+
+                <div *ngIf="successMessageEdit" class="success-message">
+                    {{ successMessageEdit }}
+                </div>
+                <h1>Edit Passport Issuance Details</h1>
+                <div class="form-group">
+                    <label>ID:</label>
+                    <p>{{ passportDetails.id }}</p>
+                </div>
+                <div class="form-group">
+                    <label>Status:</label>
+                    <p>{{ passportDetails.status }}</p>
+                </div>
+                <div class="form-group">
+                    <label>Submitted At:</label>
+                    <p>{{ formatDate(passportDetails.submitted_at) }}</p>
+                </div>
+
+                <div class="form-group" *ngIf="passportDetails.id_card_copy">
+
+                    <label>Φωτοαντίγραφο δύο όψεων του δελτίου αστυνομικής ταυτότητας στην ίδια σελίδα:</label>
+                    <p (click)="downloadFile('id_card_copy', passportDetails.id, passportDetails.application_type)"
+                        class="download-link">Download ID Card Copy
+                    </p>
+
+                    <input type="file" id="id_card_copy" (change)="onFileChange($event, 1)" accept=".pdf" required />
+
+
+                </div>
+
+                <div class="form-group" *ngIf="passportDetails.applicant_photo">
+
+                    <label>Μια πρόσφατη έγχρωμη φωτογραφία 4x6 εκ. συγκεκριμένων τεχνικών προδιαγραφών:</label>
+                    <p (click)="downloadFile('applicant_photo', passportDetails.id , passportDetails.application_type)"
+                        class="download-link">Download Photo</p>
+
+                    <input type="file" id="applicant_photo" (change)="onFileChange($event, 2)"
+                        accept=".jpg, .jpeg, .png" required />
+
+
+
+                </div>
+
+                <div class="form-group" *ngIf="passportDetails.payment_receipt">
+
+                    <label>Παράβολα είσπραξης εσόδων:</label>
+                    <p (click)="downloadFile('payment_receipt', passportDetails.id , passportDetails.application_type)"
+                        class="download-link">Download Payment
+                        Receipt</p>
+
+                    <input type="file" id="payment_receipt" (change)="onFileChange($event, 3)" accept=".pdf" required />
+
+                </div>
+
+                <div class="form-group" *ngIf="passportDetails.application_form">
+
+                    <label>Αίτηση έκδοσης διαβατηρίου που εκτυπώνεται στα Γραφεία Υποδοχής Αιτημάτων:</label>
+                    <p (click)="downloadFile('application_form', passportDetails.id,passportDetails.application_type)"
+                        class="download-link">Download Application
+                        Form</p>
+
+                    <input type="file" id="application_form" (change)="onFileChange($event, 4)" accept=".pdf"
+                        required />
+
+                </div>
+
+                <div class="form-group" *ngIf="passportDetails.old_passport_pdf">
+
+                    <label>Παλαιό διαβατήριο:</label>
+                    <p (click)="downloadFile('old_passport_pdf', passportDetails.id,passportDetails.application_type)"
+                        class="download-link">Download Old
+                        Passport</p>
+
+                    <input type="file" id="old_passport_pdf" (change)="onFileChange($event, 5)" accept=".pdf"
+                        required />
+
+
+                </div>
+
+                <div class="form-group" *ngIf="passportDetails.police_report">
+
+                    <label>Bεβαίωση Ελληνικής Αρχής στην οποία δηλώθηκε η κλοπή ή απώλεια:</label>
+                    <p (click)="downloadFile('police_report', passportDetails.id,passportDetails.application_type)"
+                        class="download-link">Download </p>
+
+                    <input type="file" id="police_report" (change)="onFileChange($event, 6)" accept=".pdf" required />
+
+                </div>
+
+                <div class="form-group" *ngIf="passportDetails.caregiver_address_certification">
+
+                    <label>Yπεύθυνη Δήλωση (την αναγραφείσα διεύθυνση κατοικίας του ανηλίκου):</label>
+                    <p (click)="downloadFile('caregiver_address_certification', passportDetails.id,passportDetails.application_type)"
+                        class="download-link">
+                        Download Address Certification</p>
+
+                    <input type="file" id="caregiver_address_certification" (change)="onFileChange($event, 7)"
+                        accept=".pdf" required />
+
+                </div>
+
+                <div class="form-group" *ngIf="passportDetails.convicted_declaration">
+
+                    <label>Yπεύθυνη Δήλωση (Αν έχει καταδικαστεί τελεσίδικα για πλαστογραφία, πλαστογραφία
+                        πιστοποιητικών):</label>
+                    <p (click)="downloadFile('convicted_declaration', passportDetails.id,passportDetails.application_type)"
+                        class="download-link">Download
+                        Convicted Declaration</p>
+
+                    <input type="file" id="convicted_declaration" (change)="onFileChange($event, 8)" accept=".pdf"
+                        required />
+
+                </div>
+
+                <div class="form-group" *ngIf="passportDetails.minor_age_declaration">
+
+                    <label>Yπεύθυνη Δήλωση (Για την αυτεπάγγελτη αναζήτηση μέσω του Ολοκληρωμένου Πληροφοριακού
+                        Συστήματος):</label>
+                    <p (click)="downloadFile('minor_age_declaration', passportDetails.id,passportDetails.application_type)"
+                        class="download-link">Download
+                        Age Declaration</p>
+
+                    <input type="file" id="minor_age_declaration" (change)="onFileChange($event, 9)" accept=".pdf"
+                        required />
+
+                </div>
+                <button type="submit" [disabled]="!pdfForm.form.valid">UPDATE</button>
+            </form>
+        </div>
+    </div>
+</ng-template>

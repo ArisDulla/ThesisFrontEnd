@@ -37,6 +37,12 @@
                         </td>
                         <td>
                             <ng-container *ngIf="passportDetails.status === 'pending'">
+                                <a (click)="editDetails(passportDetails.id,passportDetails.application_type)"
+                                    class="view-link">Edit</a>
+                            </ng-container>
+                        </td>
+                        <td>
+                            <ng-container *ngIf="passportDetails.status === 'pending'">
                                 <a (click)="cancel_application(passportDetails.id)" class="view-link">Cancel</a>
                             </ng-container>
                         </td>
