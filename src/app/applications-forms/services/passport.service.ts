@@ -36,5 +36,12 @@ export class PassportService {
     return this.http.post<any>(this.apiUrl + 'api/replacement-passport/', formData);
   }
 
+  //
+  // Theft or Loss Passport
+  //
+  theftOrLossPassport(formData: any): Observable<any> {
+    return this.http.post<any>(this.apiUrl + 'api/theftOrLoss-passport/', formData);
+  }
+
 
 }
