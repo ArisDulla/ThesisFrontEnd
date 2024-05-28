@@ -36,20 +36,17 @@ export class EditUserComponent implements OnInit {
   loadingDataUser: boolean = false;
   type_user: any;
 
+  variables_user: any = null;
+
   constructor(private authService: AuthService) { }
 
   ngOnInit(): void {
 
-
     this.getViewUser();
-    this.getIdDepartmentOfUser();
-    this.getAllDepartments();
 
     this.authService.$refreshTokenReceived.subscribe(() => {
 
       this.getViewUser();
-      this.getAllDepartments();
-      this.getIdDepartmentOfUser();
 
     });
 
@@ -65,11 +62,29 @@ export class EditUserComponent implements OnInit {
 
       this.userData = res;
 
+      //
+      // GET variables of user
+      //
+      this.variables_user = this.authService.getRoleUser();
+
+      if (this.variables_user.department_id === null) {
+
+        this.errorMessageDepartment = 'You are not assigned to any department. Please select one from the options below';
+        this.cityzen_id = this.variables_user.user_id
+        this.type_user = this.variables_user.type_user
+
+      } else {
+
+        this.selectedDepartment = this.variables_user.department_id;
+        this.cityzen_id = this.variables_user.user_id
+        this.type_user = this.variables_user.type_user
+
+      }
+      this.getAllDepartments();
+
     },
       (error: any) => {
-
         // Error catch at interceptor
-
       });
   }
 
@@ -165,39 +180,6 @@ export class EditUserComponent implements OnInit {
       });
   }
 
-  //
-  // Get id Department Of User
-  //
-  getIdDepartmentOfUser() {
-
-    this.authService.getIdDepartmentOfUser().subscribe(
-      (res: any) => {
-
-        this.res = res;
-        //console.log(this.departmentId)
-
-        if (this.res.department_id === null) {
-
-          this.errorMessageDepartment = 'You are not assigned to any department. Please select one from the options below';
-          this.cityzen_id = this.res.user_id
-          this.type_user = this.res.type_user
-
-        } else {
-
-          this.selectedDepartment = this.res.department_id;
-          this.cityzen_id = this.res.user_id
-          this.type_user = this.res.type_user
-
-        }
-      },
-
-      (error: any) => {
-
-        // Error catch at interceptor
-
-      }
-    );
-  }
 
   //
   //
@@ -208,7 +190,7 @@ export class EditUserComponent implements OnInit {
 
     this.authService.updateIdDepartmentOfUser(this.selectedDepartment, this.cityzen_id).subscribe(
       (data: any) => {
-
+        this.authService.refreshToken()
         this.errorMessageDepartment = null
         this.successMessageDepartment = "Department updated successfully."
 

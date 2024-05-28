@@ -10,15 +10,59 @@ import { EditPhoneNumberComponent } from './edit-phone-number/edit-phone-number.
 import { AddPhoneNumberComponent } from './add-phone-number/add-phone-number.component';
 import { AddAddressComponent } from './add-address/add-address.component';
 import { EditAddressComponent } from './edit-address/edit-address.component';
+import { authGuard } from '../auth.guard'
 
 
 const routes: Routes = [
-  { path: 'view-user', component: ViewUserComponent },
-  { path: 'edit-user', component: EditUserComponent },
-  { path: 'edit-phone-number', component: EditPhoneNumberComponent },
-  { path: 'add-phone-number', component: AddPhoneNumberComponent },
-  { path: 'add-address', component: AddAddressComponent },
-  { path: 'edit-address', component: EditAddressComponent },
+  {
+    path: 'view-user',
+    component: ViewUserComponent,
+    canActivate: [authGuard],
+    data: {
+      allowedRoles: ['cityzen', 'employeeYP01', 'employeeYP02', "employeeSEC", "admin"]
+    }
+
+  },
+  {
+    path: 'edit-user',
+    component: EditUserComponent,
+    canActivate: [authGuard],
+    data: {
+      allowedRoles: ['cityzen', 'employeeYP01', 'employeeYP02', "employeeSEC", "admin"]
+    }
+  },
+  {
+    path: 'edit-phone-number',
+    component: EditPhoneNumberComponent,
+    canActivate: [authGuard],
+    data: {
+      allowedRoles: ['cityzen', 'employeeYP01', 'employeeYP02', "employeeSEC", "admin"]
+    }
+  },
+  {
+    path: 'add-phone-number',
+    component: AddPhoneNumberComponent,
+    canActivate: [authGuard],
+    data: {
+      allowedRoles: ['cityzen', 'employeeYP01', 'employeeYP02', "employeeSEC", "admin"]
+    }
+  },
+  {
+    path: 'add-address',
+    component: AddAddressComponent,
+    canActivate: [authGuard],
+    data: {
+      allowedRoles: ['cityzen', 'employeeYP01', 'employeeYP02', "employeeSEC", "admin"]
+    }
+  },
+  {
+    path: 'edit-address',
+    component: EditAddressComponent,
+    canActivate: [authGuard],
+    data: {
+      allowedRoles: ['cityzen', 'employeeYP01', 'employeeYP02', "employeeSEC", "admin"]
+    }
+  },
 
 ];
 

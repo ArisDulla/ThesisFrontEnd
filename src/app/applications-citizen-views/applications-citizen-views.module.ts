@@ -7,11 +7,29 @@ import { IssuancePassportListComponent } from './issuance-passport-list/issuance
 import { DatePipe } from '@angular/common';
 import { IssuancePassportViewComponent } from './issuance-passport-view/issuance-passport-view.component';
 import { IssuancePassportEditComponent } from './issuance-passport-edit/issuance-passport-edit.component';
+import { authGuard } from '../auth.guard'
 
 const routes: Routes = [
-  { path: 'issuance-view-citizen-view', component: IssuancePassportViewComponent },
-  { path: 'issuance-view-citizen-list', component: IssuancePassportListComponent },
-  { path: 'issuance-view-edit', component: IssuancePassportEditComponent },
+  {
+    path: 'issuance-view-citizen-view',
+    component: IssuancePassportViewComponent,
+    canActivate: [authGuard],
+    data: { allowedRoles: ['cityzen'] }
+  },
+
+  {
+    path: 'issuance-view-citizen-list',
+    component: IssuancePassportListComponent,
+    canActivate: [authGuard],
+    data: { allowedRoles: ['cityzen'] }
+  },
+
+  {
+    path: 'issuance-view-edit',
+    component: IssuancePassportEditComponent,
+    canActivate: [authGuard],
+    data: { allowedRoles: ['cityzen'] }
+  },
 
 ];
 

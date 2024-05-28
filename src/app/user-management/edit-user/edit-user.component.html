@@ -1,15 +1,23 @@
-<div *ngIf="type_user !== 'NONE'">
+<div class="update-container">
+
+    <div class="update-form">
+        <div class="update-form">
+            <a class="button" href="/view-user">Go to BACK</a>
+        </div>
+    </div>
+</div>
+<div
+    *ngIf="type_user !== 'admin' && type_user !==  'employeeYP01' && type_user !== 'employeeYP02' && type_user !==  'employeeSEC'">
     <div class="update-container">
         <div class="update-form">
+
             <div *ngIf="errorMessageDepartment" class="error-message">
                 {{ errorMessageDepartment }}
             </div>
             <div *ngIf="successMessageDepartment" class="success-message">
                 {{ successMessageDepartment }}
             </div>
-            <div class="update-form">
-                <a class="button" href="/view-user">Go to BACK</a>
-            </div>
+
 
             <h2>Which department do you belong to?</h2>
             <form (submit)="updateIdDepartmentOfUser()">

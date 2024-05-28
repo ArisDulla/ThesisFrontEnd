@@ -26,6 +26,9 @@ export class ViewUserComponent implements OnInit {
   phoneNumbers: any[] = [];
   addresses: any[] = [];
 
+  type_user: string | null = null;
+  variables_user: any = null;
+
   constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
@@ -52,6 +55,20 @@ export class ViewUserComponent implements OnInit {
 
         this.phoneNumbers = res;
 
+        //
+        // GET variables of user
+        //
+        this.variables_user = this.authService.getRoleUser();
+        this.type_user = this.variables_user.type_user
+
+        if (this.variables_user.department_name === "NONE") {
+          this.errorMessageDepartment = 'You are not assigned to any department. Please edit your profile.';
+          this.department_name = "  -You are not assigned to any department.-  "
+
+        } else {
+          this.department_name = this.variables_user.department_name;
+
+        }
       },
         (error: any) => {
           // Error catch at interceptor
@@ -72,24 +89,6 @@ export class ViewUserComponent implements OnInit {
     },
       (error: any) => {
         // Error catch at interceptor
-      });
-
-    this.authService.getIdDepartmentOfUser().subscribe(
-      (res: any) => {
-
-        this.resp = res;
-        //console.log(this.departmentId)
-
-        if (this.resp.department_name === "NONE") {
-
-          this.errorMessageDepartment = 'You are not assigned to any department. Please edit your profile.';
-          this.department_name = "  -You are not assigned to any department.-  "
-
-        } else {
-
-          this.department_name = this.resp.department_name;
-
-        }
       });
 
   }
@@ -149,7 +148,7 @@ export class ViewUserComponent implements OnInit {
   async editAddress(address_id: any): Promise<void> {
     this.router.navigate(['/edit-address'], { state: { address_id: address_id } });
   }
-  
+
   async removeAddress(address_id: any): Promise<void> {
     this.authService.removeAddress(address_id).subscribe((res: any) => {
 

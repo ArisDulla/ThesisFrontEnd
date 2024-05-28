@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { HttpHeaders } from '@angular/common/http';
 import { Subject } from 'rxjs';
 import { Observable } from 'rxjs';
+import { jwtDecode } from 'jwt-decode';
 
 export interface ApiResponse {
   access: string;
@@ -32,6 +33,35 @@ export class AuthService {
     });
   }
 
+  getRoleUser(): object | null {
+
+    const tokenString = localStorage.getItem('refreshToken') as string;
+
+    if (!tokenString) {
+      return null;
+    }
+
+    try {
+
+      const decodedToken: any = jwtDecode(tokenString);
+      const roleUser = decodedToken.roleUser;
+      const department_name = decodedToken.department_name;
+      const department_id = decodedToken.department_id;
+      const user_Id_X = decodedToken.user_Id_X;
+
+      const user_info = {
+        "type_user": roleUser,
+        "department_name": department_name,
+        "department_id": department_id,
+        "user_id": user_Id_X
+      }
+
+      return user_info
+
+    } catch (error) {
+      return null;
+    }
+  }
 
   //
   //
@@ -117,9 +147,18 @@ export class AuthService {
         localStorage.setItem('accessToken', accessToken);
         localStorage.setItem('refreshToken', refreshToken);
 
-        this.router.navigate(['/dashboard']).then(() => {
-          window.location.reload();
-        });
+        const decodedToken: any = jwtDecode(accessToken);
+        const roleUser = decodedToken.roleUser;
+        if (roleUser == "cityzen") {
+
+          this.router.navigate(['/dashboard']).then(() => {
+            window.location.reload();
+          });
+        } else if (roleUser == "employeeYP01" || roleUser == "employeeYP02") {
+          this.router.navigate(['/dashboard-employee']).then(() => {
+            window.location.reload();
+          });
+        }
 
       }
     } catch (error) {
@@ -245,14 +284,6 @@ export class AuthService {
   getAllDepartments() {
     return this.http.get<any>(this.apiUrl + "api/departments/get_all/")
   }
-
-  // 
-  // Get id Department of User
-  //
-  getIdDepartmentOfUser() {
-    return this.http.get<any>(this.apiUrl + "api/users/get_department/")
-  }
-
 
   //
   // update Id Department Of User
