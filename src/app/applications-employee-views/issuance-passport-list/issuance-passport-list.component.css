@@ -53,6 +53,10 @@
     background-color: rgb(66, 201, 66);
 }
 
+.first-approval {
+    background-color: rgb(160, 180, 160);
+}
+
 .view-link {
     cursor: pointer;
     color: #007bff;
@@ -85,8 +89,4 @@
     /* Font size */
     margin-top: 20px;
     /* Add margin for spacing */
-}
-
-.first-approval {
-    background-color: rgb(165, 197, 165);
 }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { PassportViewService } from '../services/passport-view.service'
 import { DatePipe } from '@angular/common';
 import { Router } from '@angular/router';
+import { AuthService } from '../../authentication/services/auth.service'
 
 @Component({
   selector: 'app-issuance-passport-edit',
@@ -27,14 +28,19 @@ export class IssuancePassportEditComponent implements OnInit {
   old_passport_pdf: File | null = null;
   police_report: File | null = null;
 
+  variables_user: any = null;
+  type_user: string | null = null;
 
-  constructor(private router: Router, private authService: PassportViewService, private datePipe: DatePipe) { }
+
+  constructor(private auth: AuthService, private router: Router, private authService: PassportViewService, private datePipe: DatePipe) { }
 
   ngOnInit(): void {
     const navigation = window.history.state;
     this.passportId = navigation.passportId;
     this.application_type = navigation.application_type;
 
+    this.variables_user = this.auth.getRoleUser();
+    this.type_user = this.variables_user.type_user
     //
     // Retrive view of issuance passpor
     //

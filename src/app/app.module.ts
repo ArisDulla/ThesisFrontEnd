@@ -11,6 +11,7 @@ import { PublicComponentsModule } from './public-components/public-components.mo
 import { PrivateComponentsModule } from './private-components/private-components.module'
 import { ApplicationsFormsModule } from './applications-forms/applications-forms.module'
 import { ApplicationsCitizenViewsModule } from './applications-citizen-views/applications-citizen-views.module'
+import { ApplicationsEmployeeViewsModule } from './applications-employee-views/applications-employee-views.module'
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { ApplicationsCitizenViewsModule } from './applications-citizen-views/app
     PublicComponentsModule,
     PrivateComponentsModule,
     ApplicationsFormsModule,
-    ApplicationsCitizenViewsModule
+    ApplicationsCitizenViewsModule,
+    ApplicationsEmployeeViewsModule
 
   ],
   providers: [

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PassportViewService } from '../services/passport-view.service'
 import { DatePipe } from '@angular/common';
+import { AuthService } from '../../authentication/services/auth.service'
 
 @Component({
   selector: 'app-issuance-passport-view',
@@ -13,14 +14,18 @@ export class IssuancePassportViewComponent implements OnInit {
   isLoading: boolean = true;
   errorMessage: string | null = null;
   application_type: string | null = null;
+  variables_user: any = null;
+  type_user: string | null = null;
 
-  constructor(private authService: PassportViewService, private datePipe: DatePipe) { }
+  constructor(private auth: AuthService, private authService: PassportViewService, private datePipe: DatePipe) { }
 
   ngOnInit(): void {
     const navigation = window.history.state;
     this.passportId = navigation.passportId;
     this.application_type = navigation.application_type;
 
+    this.variables_user = this.auth.getRoleUser();
+    this.type_user = this.variables_user.type_user
     //
     // Retrive view of issuance passpor
     //

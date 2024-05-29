@@ -27,10 +27,21 @@
                     <tr *ngFor="let passportDetails of passportDetailsList">
                         <td>{{ passportDetails.id }}</td>
                         <td>{{ getApplicationTypeDescription(passportDetails.application_type) }}</td>
-                        <td
-                            [ngClass]="{'rejected': passportDetails.status === 'rejected', 'pending': passportDetails.status === 'pending', 'canceled': passportDetails.status === 'canceled', 'final-approval': passportDetails.status === 'final_approval'}">
-                            {{ passportDetails.status }}</td>
+                        <ng-container
+                            *ngIf="passportDetails.status !== 'first_approval' && passportDetails.status !== 'final_approval' ">
+                            <td
+                                [ngClass]="{'rejected': passportDetails.status === 'rejected', 'pending': passportDetails.status === 'pending', 'canceled': passportDetails.status === 'canceled'}">
+                                {{ passportDetails.status }}</td>
+                        </ng-container>
+
+                        <ng-container *ngIf="passportDetails.status == 'first_approval'">
+                            <td class="first-approval">Το αιτημα παραληφθηκε και εξεταζεται</td>
+                        </ng-container>
+                        <ng-container *ngIf="passportDetails.status == 'final_approval'">
+                            <td class="final-approval">Το αιτημα εγκριθηκε</td>
+                        </ng-container>
                         <td>{{ formatDate(passportDetails.submitted_at) }}</td>
+
                         <td>
                             <a (click)="viewDetails(passportDetails.id,passportDetails.application_type)"
                                 class="view-link">View</a>

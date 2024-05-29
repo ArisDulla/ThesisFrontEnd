@@ -5,7 +5,14 @@
 <ng-template #detailsTemplate>
   <div class="update-container">
     <div class="update-form">
-      <a class="back-button" href="/issuance-view-citizen-list">Go to BACK</a>
+
+      <ng-container *ngIf=" this.type_user === 'cityzen'">
+        <a class="back-button" href="/issuance-view-citizen-list">Go to BACK</a>
+      </ng-container>
+      <ng-container *ngIf=" this.type_user === 'employeeYP01' || this.type_user === 'employeeYP02'">
+        <a class="back-button" href="/issuance-view-employee-view">Go to BACK</a>
+      </ng-container>
+
       <h1>Passport Issuance Details</h1>
       <div class="form-group">
         <label>ID:</label>

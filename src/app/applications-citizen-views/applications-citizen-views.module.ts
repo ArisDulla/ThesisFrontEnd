@@ -14,7 +14,7 @@ const routes: Routes = [
     path: 'issuance-view-citizen-view',
     component: IssuancePassportViewComponent,
     canActivate: [authGuard],
-    data: { allowedRoles: ['cityzen'] }
+    data: { allowedRoles: ['cityzen', 'employeeYP01', 'employeeYP02'] }
   },
 
   {
@@ -28,7 +28,7 @@ const routes: Routes = [
     path: 'issuance-view-edit',
     component: IssuancePassportEditComponent,
     canActivate: [authGuard],
-    data: { allowedRoles: ['cityzen'] }
+    data: { allowedRoles: ['cityzen', 'employeeYP01', 'employeeYP02'] }
   },
 
 ];
