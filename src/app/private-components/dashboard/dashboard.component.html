@@ -1,9 +1,14 @@
 <div class="update-container">
   <div class="update-form">
-    <a href="/issuance-view-citizen-list" class="link">
-      <span class="black-text">0. Οι Αιτήσεις μου</span>
-      <span class="blue-text">Πατήστε εδώ</span>
-    </a>
+    <ng-container *ngIf=" this.type_user !== 'cityzen'">
+      <a class="back-button" href="/dashboard-employee">Go to BACK</a>
+    </ng-container>
+    <ng-container *ngIf=" this.type_user === 'cityzen'">
+      <a href="/issuance-view-citizen-list" class="link">
+        <span class="black-text">0. Οι Αιτήσεις μου</span>
+        <span class="blue-text">Πατήστε εδώ</span>
+      </a>
+    </ng-container>
     <a href="/issuance-passport" class="link">
       <span class="black-text">1. Έκδοση διαβατηρίου για ενήλικες</span>
       <span class="blue-text">Πατήστε εδώ</span>

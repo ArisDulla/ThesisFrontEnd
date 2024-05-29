@@ -21,35 +21,74 @@
     color: #333;
 }
 
-.form-group {
-    margin-bottom: 20px;
-}
-
-.form-group label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
-    color: #666;
-}
-
-.form-group input[type="file"] {
-    display: block;
+.table {
     width: 100%;
-    padding: 10px;
-    font-size: 16px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
+    border-collapse: collapse;
 }
 
-button[type="submit"] {
+.table td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    text-align: center;
+}
+
+.table td:first-child {
+    font-weight: bold;
+    width: 30%;
+}
+
+.rejected {
+    background-color: red;
+}
+
+.pending {
+    background-color: yellow;
+}
+
+.canceled {
+    background-color: rgb(253, 0, 0);
+}
+
+.final-approval {
+    background-color: rgb(66, 201, 66);
+}
+
+.first-approval {
+    background-color: rgb(160, 180, 160);
+}
+
+.view-link {
+    cursor: pointer;
+    color: #007bff;
+
+}
+
+.back-button {
+    display: inline-block;
     background-color: #888;
     color: #000000;
     border: none;
     border-radius: 4px;
     padding: 10px 20px;
     cursor: pointer;
-    font-size: 16px;
+    text-decoration: none;
+}
 
+.success-message {
+    background-color: #4caf50;
+    /* Green color */
+    color: white;
+    /* Text color */
+    padding: 15px 20px;
+    /* Padding */
+    border-radius: 5px;
+    /* Rounded corners */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    /* Subtle shadow */
+    font-size: 16px;
+    /* Font size */
+    margin-top: 20px;
+    /* Add margin for spacing */
 }
 
 .error-message {
@@ -68,22 +107,4 @@ button[type="submit"] {
     white-space: pre-line;
     /* Κάνει την CSS να διατηρεί τις νέες γραμμές */
 
-}
-
-.back-button {
-    display: inline-block;
-    background-color: #888;
-    color: #000000;
-    border: none;
-    border-radius: 4px;
-    padding: 10px 20px;
-    cursor: pointer;
-    text-decoration: none;
-}
-
-input[type="email"] {
-    width: 100%;
-    padding: 8px;
-    border-radius: 4px;
-    border: 1px solid #ccc;
 }

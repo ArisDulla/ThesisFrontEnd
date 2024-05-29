@@ -30,7 +30,7 @@ export class IssuancePassportEditComponent implements OnInit {
 
   variables_user: any = null;
   type_user: string | null = null;
-
+  dashboard: string | null = null;
 
   constructor(private auth: AuthService, private router: Router, private authService: PassportViewService, private datePipe: DatePipe) { }
 
@@ -38,6 +38,7 @@ export class IssuancePassportEditComponent implements OnInit {
     const navigation = window.history.state;
     this.passportId = navigation.passportId;
     this.application_type = navigation.application_type;
+    this.dashboard = navigation.dashboard;
 
     this.variables_user = this.auth.getRoleUser();
     this.type_user = this.variables_user.type_user

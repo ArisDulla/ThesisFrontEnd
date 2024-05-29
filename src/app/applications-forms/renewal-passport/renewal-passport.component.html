@@ -6,6 +6,12 @@
 
         <form (ngSubmit)="onSubmit()" #pdfForm="ngForm">
             <h1>2. Aνανέωση διαβατηρίου</h1>
+            <ng-container *ngIf=" this.type_user !== 'cityzen'">
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" [(ngModel)]="email">
+                </div>
+            </ng-container>
             <div class="form-group">
                 <label for="id_card_copy">Φωτοαντίγραφο δύο όψεων του δελτίου αστυνομικής ταυτότητας στην ίδια
                     σελίδα:</label>

@@ -1,9 +1,20 @@
 <div class="update-container">
   <div class="update-form">
-    <a href="/issuance-view-employee-view" class="link">
-      <span class="black-text">Αιτήσεις για επιβεβαιωση</span>
+    <ng-container *ngIf=" this.type_user !== 'employeeSEC'">
+
+      <a href="/issuance-view-employee-view" class="link">
+        <span class="black-text">Αιτήσεις για επιβεβαιωση</span>
+        <span class="blue-text">Πατήστε εδώ</span>
+      </a>
+
+    </ng-container>
+    <a href="/dashboard" class="link">
+      <span class="black-text">Δημιουργία αιτήματος.</span>
       <span class="blue-text">Πατήστε εδώ</span>
     </a>
-
+    <a href="/issuance-view-employee-all-view" class="link">
+      <span class="black-text">Ολες οι αιτησεις του τμηματος</span>
+      <span class="blue-text">Πατήστε εδώ</span>
+    </a>
   </div>
 </div>

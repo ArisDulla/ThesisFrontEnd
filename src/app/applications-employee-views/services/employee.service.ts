@@ -37,6 +37,13 @@ export class EmployeeService {
   }
 
   //
+  // GET all LIST Issuance Passport
+  //
+  getAllIssuancePassport(): Observable<any> {
+    return this.http.get<any>(this.apiUrl + 'api/issuance/list-employee/');
+  }
+
+  //
   // First Approval Application
   //
   first_approval_application(id: any): Observable<any> {

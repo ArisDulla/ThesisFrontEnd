@@ -11,14 +11,14 @@ const routes: Routes = [
     path: 'dashboard',
     component: DashboardComponent,
     canActivate: [authGuard],
-    data: { allowedRoles: ['cityzen', 'employeeYP01', 'employeeYP02'] }
+    data: { allowedRoles: ['cityzen', 'employeeYP01', 'employeeYP02', 'employeeSEC'] }
   },
 
   {
     path: 'dashboard-employee',
     component: DashboardEmployeeComponent,
     canActivate: [authGuard],
-    data: { allowedRoles: ['employeeYP01', 'employeeYP02'] }
+    data: { allowedRoles: ['employeeYP01', 'employeeYP02', 'employeeSEC'] }
   },
 
 ];

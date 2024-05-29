@@ -154,7 +154,7 @@ export class AuthService {
           this.router.navigate(['/dashboard']).then(() => {
             window.location.reload();
           });
-        } else if (roleUser == "employeeYP01" || roleUser == "employeeYP02") {
+        } else if (roleUser == "employeeYP01" || roleUser == "employeeYP02" || roleUser == "employeeSEC") {
           this.router.navigate(['/dashboard-employee']).then(() => {
             window.location.reload();
           });

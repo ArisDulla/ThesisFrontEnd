@@ -1,23 +1,33 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { PassportService } from '../services/passport.service'
 import { Router } from '@angular/router';
+import { AuthService } from '../../authentication/services/auth.service'
 
 @Component({
   selector: 'app-theft-or-loss-passport',
   templateUrl: './theft-or-loss-passport.component.html',
   styleUrl: './theft-or-loss-passport.component.css'
 })
-export class TheftOrLossPassportComponent {
+export class TheftOrLossPassportComponent implements OnInit {
   id_card_copy: File | null = null;
   applicant_photo: File | null = null;
   payment_receipt: File | null = null;
   police_report: File | null = null;
   errorMessage: string | null = null;
+  email: string | null = null;
+  variables_user: any = null;
+  type_user: string | null = null;
 
-  constructor(
+  constructor(private auth: AuthService,
     private passportService: PassportService, private router: Router
   ) { }
 
+
+  ngOnInit(): void {
+    this.variables_user = this.auth.getRoleUser();
+    this.type_user = this.variables_user.type_user
+
+  }
 
   onFileChange(event: Event, fileIndex: number): void {
     const input = event.target as HTMLInputElement;
@@ -41,6 +51,9 @@ export class TheftOrLossPassportComponent {
 
     if (this.id_card_copy && this.applicant_photo && this.payment_receipt && this.police_report) {
       const formData = new FormData();
+      if (this.email) {
+        formData.append('email', this.email);
+      }
       formData.append('id_card_copy', this.id_card_copy);
       formData.append('applicant_photo', this.applicant_photo);
       formData.append('payment_receipt', this.payment_receipt);
@@ -52,8 +65,11 @@ export class TheftOrLossPassportComponent {
         (data: any) => {
 
           this.errorMessage = null;
-          this.router.navigate(['/issuance-view-citizen-list'], { queryParams: { successMessage: "Successfully submitted the application!" } })
-
+          if (this.type_user == "cityzen") {
+            this.router.navigate(['/issuance-view-citizen-list'], { queryParams: { successMessage: "Successfully submitted the application!" } })
+          } else {
+            this.router.navigate(['/issuance-view-employee-all-view'], { queryParams: { successMessage: "Successfully submitted the application!" } })
+          }
         },
 
         (error: any) => {
@@ -67,11 +83,13 @@ export class TheftOrLossPassportComponent {
           }
 
           this.errorMessage = errorMessage;
+          window.scrollTo(0, 0);
 
         }
       );
     } else {
       this.errorMessage = "Must complete all fields."
+      window.scrollTo(0, 0);
     }
   }
 

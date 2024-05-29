@@ -9,13 +9,30 @@
       <ng-container *ngIf=" this.type_user === 'cityzen'">
         <a class="back-button" href="/issuance-view-citizen-list">Go to BACK</a>
       </ng-container>
-      <ng-container *ngIf=" this.type_user === 'employeeYP01' || this.type_user === 'employeeYP02'">
+      <ng-container
+        *ngIf=" (this.type_user === 'employeeYP01' || this.type_user === 'employeeYP02') && this.dashboard == null">
         <a class="back-button" href="/issuance-view-employee-view">Go to BACK</a>
       </ng-container>
+      <ng-container *ngIf=" this.dashboard !=null">
+        <a class="back-button" href="/issuance-view-employee-all-view">Go to BACK</a>
+      </ng-container>
+
 
       <h1>Passport Issuance Details</h1>
       <div class="form-group">
-        <label>ID:</label>
+        <label>First name:</label>
+        <p>{{ passportDetails.user_details.first_name}}</p>
+      </div>
+      <div class="form-group">
+        <label>Last Name:</label>
+        <p>{{ passportDetails.user_details.last_name}}</p>
+      </div>
+      <div class="form-group">
+        <label>Email:</label>
+        <p>{{ passportDetails.user_details.email}}</p>
+      </div>
+      <div class="form-group">
+        <label>Application ID:</label>
         <p>{{ passportDetails.id }}</p>
       </div>
       <div class="form-group">

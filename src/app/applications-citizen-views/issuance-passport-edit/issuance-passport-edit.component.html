@@ -11,8 +11,12 @@
             <ng-container *ngIf=" this.type_user === 'cityzen'">
                 <a class="back-button" href="/issuance-view-citizen-list">Go to BACK</a>
             </ng-container>
-            <ng-container *ngIf=" this.type_user === 'employeeYP01' || this.type_user === 'employeeYP02'">
-                <a class="back-button" href="/issuance-view-employee-view">Go to BACK</a>
+            <ng-container
+                *ngIf=" (this.type_user === 'employeeYP01' || this.type_user === 'employeeYP02') && this.dashboard == null ">
+                <a class="back-button" href="/issuance-view-employee-view">Go to BACK{{this.dashboard}}</a>
+            </ng-container>
+            <ng-container *ngIf=" this.dashboard !=null">
+                <a class="back-button" href="/issuance-view-employee-all-view">Go to BACK</a>
             </ng-container>
 
             <form (ngSubmit)="onSubmit()" #pdfForm="ngForm">

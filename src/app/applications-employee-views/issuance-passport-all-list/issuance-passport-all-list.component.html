@@ -22,9 +22,6 @@
                         <td>Application Type</td>
                         <td>Status:</td>
                         <td>Submitted At:</td>
-                        <td>VIEW</td>
-                        <td>ACTIONS</td>
-
                     </tr>
                     <tr *ngFor="let passportDetails of passportDetailsList">
                         <td>{{ passportDetails.id }}</td>
@@ -33,7 +30,6 @@
                             [ngClass]="{'rejected': passportDetails.status === 'rejected', 'pending': passportDetails.status === 'pending', 'canceled': passportDetails.status === 'canceled', 'final-approval': passportDetails.status === 'final_approval','first-approval': passportDetails.status === 'first_approval'}">
                             {{ passportDetails.status }}</td>
                         <td>{{ formatDate(passportDetails.submitted_at) }}</td>
-
                         <td>
                             <a (click)="viewDetails(passportDetails.id,passportDetails.application_type)"
                                 class="view-link">View</a>
@@ -43,23 +39,6 @@
                                 <a (click)="editDetails(passportDetails.id,passportDetails.application_type)"
                                     class="view-link">Edit</a>
                             </ng-container>
-                        </td>
-
-                        <ng-container *ngIf=" this.type_user === 'employeeYP01' ">
-                            <td>
-                                <a (click)="first_approval_application(passportDetails.id)" class="view-link">First
-                                    Approval</a>
-                            </td>
-                        </ng-container>
-                        <ng-container *ngIf=" this.type_user === 'employeeYP02' ">
-                            <td>
-                                <a (click)="final_approval_application(passportDetails.id)" class="view-link">Final
-                                    approval</a>
-                            </td>
-                        </ng-container>
-
-                        <td>
-                            <a (click)="rejected_application(passportDetails.id)" class="view-link">Reject</a>
                         </td>
                     </tr>
                 </table>
