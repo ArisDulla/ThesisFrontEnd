@@ -45,14 +45,24 @@ export class IssuancePassportListComponent {
     this.authService.cancel_application(passportId).subscribe(
       (data: any) => {
 
-        window.location.reload();
-        this.successMessage = "null"
+        this.getIssuancePassport();
+        this.successMessage = "Passport application cancelled successfully.";
         this.errorMessage = null
+        window.scrollTo(0, 0);
       },
       (error: any) => {
 
         this.successMessage = null
-        this.errorMessage = 'Oops! Something went wrong';
+        let errorMessage: string = '';
+        //
+        // Error of Fields
+        //
+        for (const field in error.error) {
+          errorMessage += field + " " + error.error[field][0] + '\n';
+        }
+
+        this.errorMessage = errorMessage;
+        window.scrollTo(0, 0);
 
       }
     );

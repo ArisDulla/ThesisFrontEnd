@@ -90,3 +90,21 @@
     margin-top: 20px;
     /* Add margin for spacing */
 }
+
+.error-message {
+    background-color: #f44336;
+    /* Red color */
+    color: black;
+    /* Text color */
+    padding: 15px 20px;
+    /* Padding */
+    border-radius: 5px;
+    /* Rounded corners */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    /* Subtle shadow */
+    font-size: 16px;
+    /* Font size */
+    white-space: pre-line;
+    /* Κάνει την CSS να διατηρεί τις νέες γραμμές */
+
+}

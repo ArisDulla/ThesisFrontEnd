@@ -1,7 +1,9 @@
 <div *ngIf="successMessage" class="success-message">
     {{ successMessage }}
 </div>
-
+<div *ngIf="errorMessage" class="error-message">
+    {{ errorMessage }}
+</div>
 <div class="update-container">
     <div class="update-form">
         <a class="back-button" href="/dashboard">Go to BACK</a>

@@ -63,15 +63,23 @@ export class IssuancePassportListComponent {
     this.authService.first_approval_application(passportId).subscribe(
       (data: any) => {
 
-        window.location.reload();
-        this.successMessage = "null"
+        this.getIssuancePassport();
+        this.successMessage = "First approval application submitted successfully"
         this.errorMessage = null
+        window.scrollTo(0, 0);
       },
       (error: any) => {
-
         this.successMessage = null
-        this.errorMessage = 'Oops! Something went wrong';
+        let errorMessage: string = '';
+        //
+        // Error of Fields
+        //
+        for (const field in error.error) {
+          errorMessage += field + " " + error.error[field][0] + '\n';
+        }
 
+        this.errorMessage = errorMessage;
+        window.scrollTo(0, 0);
       }
     );
   }
@@ -81,14 +89,25 @@ export class IssuancePassportListComponent {
     this.authService.final_approval_application(passportId).subscribe(
       (data: any) => {
 
-        window.location.reload();
-        this.successMessage = "null"
+        this.getIssuancePassport();
+        this.successMessage = "Final approval application submitted successfully"
         this.errorMessage = null
+        window.scrollTo(0, 0);
+
       },
       (error: any) => {
 
         this.successMessage = null
-        this.errorMessage = 'Oops! Something went wrong';
+        let errorMessage: string = '';
+        //
+        // Error of Fields
+        //
+        for (const field in error.error) {
+          errorMessage += field + " " + error.error[field][0] + '\n';
+        }
+
+        this.errorMessage = errorMessage;
+        window.scrollTo(0, 0);
 
       }
     );
@@ -100,14 +119,25 @@ export class IssuancePassportListComponent {
     this.authService.rejected_application(passportId).subscribe(
       (data: any) => {
 
-        window.location.reload();
-        this.successMessage = "null"
+        this.getIssuancePassport();
+        this.successMessage = "Passport application rejected successfully.";
+        window.scrollTo(0, 0);
         this.errorMessage = null
       },
       (error: any) => {
 
         this.successMessage = null
-        this.errorMessage = 'Oops! Something went wrong';
+
+        let errorMessage: string = '';
+        //
+        // Error of Fields
+        //
+        for (const field in error.error) {
+          errorMessage += field + " " + error.error[field][0] + '\n';
+        }
+
+        this.errorMessage = errorMessage;
+        window.scrollTo(0, 0);
 
       }
     );

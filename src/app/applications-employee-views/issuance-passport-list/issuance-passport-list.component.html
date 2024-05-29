@@ -1,7 +1,9 @@
 <div *ngIf="successMessage" class="success-message">
     {{ successMessage }}
 </div>
-
+<div *ngIf="errorMessage" class="error-message">
+    {{ errorMessage }}
+</div>
 <div class="update-container">
     <div class="update-form">
         <a class="back-button" href="/dashboard-employee">Go to BACK</a>
@@ -43,15 +45,13 @@
                             </ng-container>
                         </td>
 
-                        <ng-container
-                            *ngIf=" this.type_user === 'employeeYP01' && passportDetails.status !== 'rejected' && passportDetails.status !== 'canceled' && passportDetails.status !== 'final_approval' ">
+                        <ng-container *ngIf=" this.type_user === 'employeeYP01' ">
                             <td>
                                 <a (click)="first_approval_application(passportDetails.id)" class="view-link">First
                                     Approval</a>
                             </td>
                         </ng-container>
-                        <ng-container
-                            *ngIf=" this.type_user === 'employeeYP02' && passportDetails.status !== 'rejected' && passportDetails.status !== 'canceled' ">
+                        <ng-container *ngIf=" this.type_user === 'employeeYP02' ">
                             <td>
                                 <a (click)="final_approval_application(passportDetails.id)" class="view-link">Final
                                     approval</a>
@@ -59,10 +59,7 @@
                         </ng-container>
 
                         <td>
-                            <ng-container
-                                *ngIf="passportDetails.status !== 'rejected' && passportDetails.status !== 'canceled' && passportDetails.status !== 'final_approval'">
-                                <a (click)="rejected_application(passportDetails.id)" class="view-link">Reject</a>
-                            </ng-container>
+                            <a (click)="rejected_application(passportDetails.id)" class="view-link">Reject</a>
                         </td>
                     </tr>
                 </table>
