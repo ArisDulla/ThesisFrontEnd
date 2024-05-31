@@ -16,5 +16,13 @@
       <span class="black-text">Ολες οι αιτησεις του τμηματος</span>
       <span class="blue-text">Πατήστε εδώ</span>
     </a>
+    <ng-container *ngIf=" this.type_user !== 'employeeSEC'">
+
+      <a href="/passport-all" class="link">
+        <span class="black-text">Ολα τα διαβατηρια του τμηματος</span>
+        <span class="blue-text">Πατήστε εδώ</span>
+      </a>
+
+    </ng-container>
   </div>
 </div>

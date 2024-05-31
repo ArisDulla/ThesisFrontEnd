@@ -9,7 +9,8 @@ import { IssuancePassportListComponent } from './issuance-passport-list/issuance
 import { IssuancePassportAllListComponent } from './issuance-passport-all-list/issuance-passport-all-list.component';
 import { PassportFormComponent } from './passport-form/passport-form.component';
 import { PassportViewComponent } from './passport-view/passport-view.component';
-import { PassportEditComponent } from './passport-edit/passport-edit.component'
+import { PassportEditComponent } from './passport-edit/passport-edit.component';
+import { PassportAllComponent } from './passport-all/passport-all.component'
 
 const routes: Routes = [
   {
@@ -42,6 +43,14 @@ const routes: Routes = [
     canActivate: [authGuard],
     data: { allowedRoles: ['employeeYP02'] }
   },
+  {
+    path: 'passport-all',
+    component: PassportAllComponent,
+    canActivate: [authGuard],
+    data: {
+      allowedRoles: ['employeeYP01', 'employeeYP02']
+    }
+  },
 
 ];
 
@@ -51,7 +60,8 @@ const routes: Routes = [
     IssuancePassportAllListComponent,
     PassportFormComponent,
     PassportViewComponent,
-    PassportEditComponent
+    PassportEditComponent,
+    PassportAllComponent
   ],
   imports: [
     CommonModule,

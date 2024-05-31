@@ -9,9 +9,13 @@
             <a class="back-button" href="/passports-view">Go to BACK</a>
         </ng-container>
         <br>
-        <ng-container *ngIf=" this.type_user != 'cityzen'">
+        <ng-container *ngIf=" this.type_user != 'cityzen' && this.code != '22' ">
             <a class="back-button" href="/issuance-view-employee-view">Go to BACK</a>
         </ng-container>
+        <ng-container *ngIf="this.code == '22' ">
+            <a class="back-button" href="/passport-all">Go to BACK</a>
+        </ng-container>
+
         <br>
         <br>
 

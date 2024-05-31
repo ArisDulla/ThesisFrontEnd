@@ -123,4 +123,8 @@ export class EmployeeService {
     return this.http.put<any>(`${this.apiUrl}api/passportInfo/${passportDetails.id}/`, body, { headers })
 
   }
+
+  getAllPassport(): Observable<any> {
+    return this.http.get<any>(this.apiUrl + 'api/passportInfo/list-employee/');
+  }
 }
