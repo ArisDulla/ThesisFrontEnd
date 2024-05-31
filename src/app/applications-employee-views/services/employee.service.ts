@@ -77,4 +77,45 @@ export class EmployeeService {
     return this.http.post<any>(`${this.apiUrl}api/issuance/${id}/rejected_application/`, { headers });
   }
 
+  //
+  //
+  // Save Passport
+  //
+  //
+  async save_passport(passportForm: any): Promise<void> {
+
+
+    try {
+      const body = JSON.stringify(passportForm);
+
+      const headers = new HttpHeaders({
+        'Content-Type': 'application/json',
+      });
+
+      await this.http.post<any>(this.apiUrl + "api/passportInfo/", body, { headers }).toPromise();
+
+    } catch (error) {
+
+      throw error;
+    }
+  }
+
+  //
+  // GET passport
+  //
+  getPassport(application_id: any): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}api/passportInfo/get-passport/${application_id}/`);
+  }
+
+
+  updatePassport(passportDetails: any): Observable<any> {
+
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+    });
+    const body = JSON.stringify(passportDetails);
+
+    return this.http.put<any>(`${this.apiUrl}api/passportInfo/${passportDetails.id}/`, body, { headers })
+
+  }
 }

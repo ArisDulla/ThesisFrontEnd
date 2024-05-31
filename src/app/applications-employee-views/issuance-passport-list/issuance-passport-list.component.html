@@ -19,6 +19,7 @@
                 <table class="table">
                     <tr>
                         <td>ID:</td>
+                        <td>User:</td>
                         <td>Application Type</td>
                         <td>Status:</td>
                         <td>Submitted At:</td>
@@ -28,6 +29,7 @@
                     </tr>
                     <tr *ngFor="let passportDetails of passportDetailsList">
                         <td>{{ passportDetails.id }}</td>
+                        <td>{{ passportDetails.user_details.email }}</td>
                         <td>{{ getApplicationTypeDescription(passportDetails.application_type) }}</td>
                         <td
                             [ngClass]="{'rejected': passportDetails.status === 'rejected', 'pending': passportDetails.status === 'pending', 'canceled': passportDetails.status === 'canceled', 'final-approval': passportDetails.status === 'final_approval','first-approval': passportDetails.status === 'first_approval'}">
@@ -56,11 +58,23 @@
                                 <a (click)="final_approval_application(passportDetails.id)" class="view-link">Final
                                     approval</a>
                             </td>
+                            <td>
+                                <a (click)="createPassport(passportDetails.id)" class="view-link">Create
+                                    Passport</a>
+                            </td>
+                            <td>
+                                <a (click)="viewPassport(passportDetails.id)" class="view-link">View
+                                    Passport</a>
+                                <br>
+                                <br>
+                                <a (click)="editPassport(passportDetails.id)" class="view-link">Edit</a>
+                            </td>
                         </ng-container>
 
                         <td>
                             <a (click)="rejected_application(passportDetails.id)" class="view-link">Reject</a>
                         </td>
+
                     </tr>
                 </table>
             </div>

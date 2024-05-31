@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { EmployeeService } from '../services/employee.service'
 import { Router } from '@angular/router';
 import { DatePipe } from '@angular/common';
@@ -11,7 +11,7 @@ import { AuthService } from '../../authentication/services/auth.service'
   templateUrl: './issuance-passport-all-list.component.html',
   styleUrl: './issuance-passport-all-list.component.css'
 })
-export class IssuancePassportAllListComponent {
+export class IssuancePassportAllListComponent implements OnInit {
   passportDetailsList: any[] = [];
   successMessage: string | null = null;
   errorMessage: string | null = null;

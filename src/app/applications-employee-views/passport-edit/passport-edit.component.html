@@ -1,0 +1,63 @@
+<div class="update-container">
+    <div class="update-form">
+        <div *ngIf="errorMessage" class="error-message">
+            {{ errorMessage }}
+
+        </div>
+        <div *ngIf="successMessage" class="success-message">
+            {{ successMessage }}
+        </div>
+
+        <br>
+
+        <a class="back-button" href="/issuance-view-employee-view">Go to BACK</a>
+
+        <br>
+        <br>
+
+        <ng-container *ngIf="this.flag == true">
+
+            <h1>Passport Edit</h1>
+            <form (submit)="updatePassport()">
+                <div class="form-group">
+                    <label>First name:</label>
+                    <input type="text" id="firstName" name="firstName" [(ngModel)]="passportDetails.first_name"
+                        required>
+                </div>
+                <div class="form-group">
+                    <label>Last Name:</label>
+                    <input type="text" id="last_name" name="last_name" [(ngModel)]="passportDetails.last_name" required>
+                </div>
+                <div class="form-group">
+                    <label>Date of Birth:</label>
+                    <input type="date" id="date_of_birth" name="date_of_birth"
+                        [(ngModel)]="passportDetails.date_of_birth" required>
+
+                </div>
+                <div class="form-group">
+                    <label>Place of birth:</label>
+                    <input type="text" id="place_of_birth" name="place_of_birth"
+                        [(ngModel)]="passportDetails.place_of_birth" required>
+                </div>
+                <div class="form-group">
+                    <label>Nationality:</label>
+                    <input type="text" id="nationality" name="nationality" [(ngModel)]="passportDetails.nationality"
+                        required>
+                </div>
+                <div class="form-group">
+                    <label>Gender:</label>
+                    <input type="text" id="gender" name="gender" [(ngModel)]="passportDetails.gender" required>
+                </div>
+                <div class="form-group">
+                    <label>Date of expiry:</label>
+                    <input type="date" id="date_of_expiry" name="date_of_expiry"
+                        [(ngModel)]="passportDetails.date_of_expiry" required>
+                </div>
+                <button type="submit">
+                    <span>Update</span>
+                    <i class="reload-icon"></i> </button>
+            </form>
+        </ng-container>
+
+    </div>
+</div>

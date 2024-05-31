@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { EmployeeService } from '../services/employee.service'
 import { Router } from '@angular/router';
 import { DatePipe } from '@angular/common';
@@ -10,7 +10,7 @@ import { AuthService } from '../../authentication/services/auth.service'
   templateUrl: './issuance-passport-list.component.html',
   styleUrl: './issuance-passport-list.component.css'
 })
-export class IssuancePassportListComponent {
+export class IssuancePassportListComponent implements OnInit {
   passportDetailsList: any[] = [];
   successMessage: string | null = null;
   errorMessage: string | null = null;
@@ -44,6 +44,19 @@ export class IssuancePassportListComponent {
   async editDetails(passportId: string, passportType: string): Promise<void> {
     await this.router.navigate(['/issuance-view-edit'], { state: { passportId: passportId, application_type: passportType } });
   }
+
+  async createPassport(passportId: string): Promise<void> {
+    await this.router.navigate(['/passport-form'], { state: { passportId: passportId } });
+  }
+
+  async viewPassport(passportId: string): Promise<void> {
+    await this.router.navigate(['/passport-view'], { state: { applicationId: passportId } });
+  }
+
+  async editPassport(passportId: string): Promise<void> {
+    await this.router.navigate(['/passport-edit'], { state: { applicationId: passportId } });
+  }
+
 
   getIssuancePassport() {
     this.authService.getIssuancePassport().subscribe((res: any) => {

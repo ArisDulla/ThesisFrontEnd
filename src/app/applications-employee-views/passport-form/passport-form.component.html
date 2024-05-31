@@ -1,0 +1,33 @@
+<div class="update-container">
+    <div class="update-form">
+        <div *ngIf="errorMessage" class="error-message">
+            {{ errorMessage }}
+        </div>
+        <div *ngIf="successMessage" class="success-message">
+            {{ successMessage }}
+        </div>
+        <br>
+        <a class="back-button" href="/issuance-view-employee-view">Go to BACK</a>
+
+        <h2>Create Passport</h2>
+        <form [formGroup]="passportForm" (ngSubmit)="save_passport()">
+            <input type="text" formControlName="first_name" placeholder="First Name" required>
+            <input type="text" formControlName="last_name" placeholder="Last Name" required>
+            <label>Date of birth</label>
+            <input type="date" formControlName="date_of_birth" placeholder="Date of birth" required>
+            <input type="text" formControlName="place_of_birth" placeholder="Place of birth" required>
+            <input type="text" formControlName="nationality" placeholder="Nationality" required>
+            <input type="text" formControlName="gender" placeholder="Gender" required>
+            <label>Date of expiry</label>
+            <input type="date" formControlName="date_of_expiry" placeholder="Date of expiry" required>
+            <br>
+            <button type="submit">
+                <span>Create</span>
+            </button>
+        </form>
+        <br>
+        <br>
+        <br>
+        <br>
+    </div>
+</div>
