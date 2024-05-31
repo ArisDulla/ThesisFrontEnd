@@ -1,0 +1,43 @@
+<div *ngIf="successMessage" class="success-message">
+    {{ successMessage }}
+</div>
+<div *ngIf="errorMessage" class="error-message">
+    {{ errorMessage }}
+</div>
+<div class="update-container">
+    <div class="update-form">
+        <a class="back-button" href="/dashboard">Go to BACK</a>
+
+        <div *ngIf="passportDetailsList.length === 0; else applicationList">
+            <p>You don't have any passports.</p>
+        </div>
+
+        <ng-template #applicationList>
+            <h1>My Passports </h1>
+
+            <div class="table-responsive">
+                <table class="table">
+                    <tr>
+                        <td>ID:</td>
+                        <td>First name</td>
+                        <td>Last name</td>
+                        <td>Passport Number</td>
+                        <td>VIEW</td>
+
+                    </tr>
+                    <tr *ngFor="let passportDetails of passportDetailsList">
+                        <td>{{ passportDetails.id }}</td>
+                        <td>{{ passportDetails.first_name }}</td>
+                        <td>{{ passportDetails.last_name }}</td>
+                        <td>{{ passportDetails.passport_number }}</td>
+                        <td>
+                            <a (click)="viewPassport(passportDetails.id)" class="view-link">View
+                                Passport</a>
+                            <br>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </ng-template>
+    </div>
+</div>

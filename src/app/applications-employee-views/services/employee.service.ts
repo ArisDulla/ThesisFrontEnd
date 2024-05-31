@@ -103,8 +103,13 @@ export class EmployeeService {
   //
   // GET passport
   //
-  getPassport(application_id: any): Observable<any> {
-    return this.http.get<any>(`${this.apiUrl}api/passportInfo/get-passport/${application_id}/`);
+  getPassport(application_id: any, code: any): Observable<any> {
+
+    if (code == "1") {
+      return this.http.get<any>(`${this.apiUrl}api/passportInfo/get-passport/${application_id}/`);
+    } else {
+      return this.http.get<any>(`${this.apiUrl}api/passportInfo/${application_id}/`);
+    }
   }
 
 

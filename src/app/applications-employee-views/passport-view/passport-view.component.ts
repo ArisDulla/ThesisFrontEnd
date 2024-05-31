@@ -18,6 +18,7 @@ export class PassportViewComponent implements OnInit {
   variables_user: any = null;
   type_user: string | null = null;
   flag: boolean = false;
+  code: string | null = null;
 
   constructor(private datePipe: DatePipe, private auth: AuthService, private formBuilder: FormBuilder, private authService: EmployeeService) { }
 
@@ -28,6 +29,8 @@ export class PassportViewComponent implements OnInit {
 
     const navigation = window.history.state;
     this.applicationId = navigation.applicationId;
+    this.code = navigation.code;
+
     this.getPassport();
 
     this.authService.$refreshTokenReceived.subscribe(() => {
@@ -37,7 +40,7 @@ export class PassportViewComponent implements OnInit {
 
   }
   getPassport() {
-    this.authService.getPassport(this.applicationId).subscribe((res: any) => {
+    this.authService.getPassport(this.applicationId, this.code).subscribe((res: any) => {
 
       //console.log(res)
       this.passportDetails = res;

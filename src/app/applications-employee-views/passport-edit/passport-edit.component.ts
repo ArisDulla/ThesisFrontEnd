@@ -66,7 +66,7 @@ export class PassportEditComponent implements OnInit {
     );
   }
   getPassport() {
-    this.authService.getPassport(this.applicationId).subscribe((res: any) => {
+    this.authService.getPassport(this.applicationId, "1").subscribe((res: any) => {
 
       //console.log(res)
       this.passportDetails = res;

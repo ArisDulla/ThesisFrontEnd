@@ -50,7 +50,7 @@ export class IssuancePassportListComponent implements OnInit {
   }
 
   async viewPassport(passportId: string): Promise<void> {
-    await this.router.navigate(['/passport-view'], { state: { applicationId: passportId } });
+    await this.router.navigate(['/passport-view'], { state: { applicationId: passportId, code: "1" } });
   }
 
   async editPassport(passportId: string): Promise<void> {

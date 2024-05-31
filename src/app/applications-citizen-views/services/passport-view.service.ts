@@ -135,5 +135,12 @@ export class PassportViewService {
 
   }
 
+  //
+  // GET LIST Passports
+  //
+  getPassports(): Observable<any> {
+    return this.http.get<any>(this.apiUrl + 'api/passportInfo/list-citizen/');
+  }
+
 
 }
