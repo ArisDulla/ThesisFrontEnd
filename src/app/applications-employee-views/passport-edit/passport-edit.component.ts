@@ -37,7 +37,6 @@ export class PassportEditComponent implements OnInit {
   }
   updatePassport() {
 
-    console.log(this.passportDetails)
     this.authService.updatePassport(this.passportDetails).subscribe(
       (data: any) => {
 

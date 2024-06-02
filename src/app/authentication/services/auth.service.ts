@@ -435,7 +435,7 @@ export class AuthService {
   // Get ALL Addresses Of User
   // 
   getAddressesOfUser(): Observable<any> {
-    return this.http.get<any>(this.apiUrl + "api/address/list-user/")
+    return this.http.get<any>(this.apiUrl + "api/userAddress/list-user/")
   }
 
   //
@@ -443,27 +443,42 @@ export class AuthService {
   // 
   removeAddress(address_id: any): Observable<any> {
 
-    return this.http.delete<any>(`${this.apiUrl}api/address/${address_id}/`)
+    return this.http.delete<any>(`${this.apiUrl}api/userAddress/${address_id}/`)
 
   }
 
   //
   // Add New Address
   // 
-  addNewAddress(address_data: any): Observable<any> {
+  addNewAddress(address_data: any, userId: any): Observable<any> {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
     });
+    let address = {}
 
-    const body = address_data;
-    return this.http.post<any>(`${this.apiUrl}api/address/`, body, { headers })
+    if (userId) {
+
+      address = {
+        'user': userId,
+        'address': address_data
+      }
+
+    } else {
+
+      address = {
+        'address': address_data
+      }
+
+    }
+    const body = address;
+    return this.http.post<any>(`${this.apiUrl}api/userAddress/`, body, { headers })
   }
 
   //
   // Get 1 Address Of User
   // 
   getAddressOfUser(address_id: any) {
-    return this.http.get<any>(`${this.apiUrl}api/address/${address_id}/`)
+    return this.http.get<any>(`${this.apiUrl}api/userAddress/${address_id}/`)
 
   }
 
@@ -476,7 +491,7 @@ export class AuthService {
     });
 
     const body = userData;
-    return this.http.put<any>(`${this.apiUrl}api/address/${address}/`, body, { headers })
+    return this.http.put<any>(`${this.apiUrl}api/userAddress/${address}/`, body, { headers })
   }
 
 

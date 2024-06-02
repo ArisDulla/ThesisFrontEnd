@@ -2,12 +2,12 @@
     <div class="update-form">
         <a class="back-button" href="/dashboard-employee">Go to BACK</a>
 
-        <div *ngIf="passportList.length === 0; else applicationList">
+        <div *ngIf="cityzensList.length === 0; else applicationList">
             <p>There are no passports.</p>
         </div>
 
         <ng-template #applicationList>
-            <h1>Passports </h1>
+            <h1>Citizens of the department </h1>
 
             <div class="table-responsive">
                 <table class="table">
@@ -15,18 +15,17 @@
                         <td>ID:</td>
                         <td>First name</td>
                         <td>Last name</td>
-                        <td>Passport Number</td>
-                        <td>VIEW</td>
+                        <td>Username</td>
+                        <td>Edit</td>
 
                     </tr>
-                    <tr *ngFor="let passportDetails of passportList">
-                        <td>{{ passportDetails.id }}</td>
-                        <td>{{ passportDetails.first_name }}</td>
-                        <td>{{ passportDetails.last_name }}</td>
-                        <td>{{ passportDetails.passport_number }}</td>
+                    <tr *ngFor="let cityzen of cityzensList">
+                        <td>{{ cityzen.user.id }}</td>
+                        <td>{{ cityzen.user.first_name }}</td>
+                        <td>{{ cityzen.user.last_name }}</td>
+                        <td>{{ cityzen.user.username }}</td>
                         <td>
-                            <a (click)="viewPassport(passportDetails.id)" class="view-link">View
-                                Passport</a>
+                            <a (click)="editCityzen(cityzen.id )" class="view-link">Edit</a>
                             <br>
                         </td>
                     </tr>

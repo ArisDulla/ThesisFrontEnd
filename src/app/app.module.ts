@@ -12,6 +12,7 @@ import { PrivateComponentsModule } from './private-components/private-components
 import { ApplicationsFormsModule } from './applications-forms/applications-forms.module'
 import { ApplicationsCitizenViewsModule } from './applications-citizen-views/applications-citizen-views.module'
 import { ApplicationsEmployeeViewsModule } from './applications-employee-views/applications-employee-views.module'
+import { CityzenUserModule } from './cityzen-user/cityzen-user.module'
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { ApplicationsEmployeeViewsModule } from './applications-employee-views/a
     PrivateComponentsModule,
     ApplicationsFormsModule,
     ApplicationsCitizenViewsModule,
-    ApplicationsEmployeeViewsModule
+    ApplicationsEmployeeViewsModule,
+    CityzenUserModule
 
   ],
   providers: [

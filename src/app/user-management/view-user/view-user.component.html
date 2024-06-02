@@ -58,9 +58,9 @@
         <br>
         <a href="/add-address" class="pointer-cursor">Add Address</a>
         <div *ngFor="let address of addresses">
-            <p><strong>{{ address.street }}</strong> {{ address.street_number }} {{ address.region_name }}<a
-                    (click)="editAddress(address.id)" class="pointer-cursor"> Edit Address</a><a
-                    (click)="removeAddress(address.id)" class="pointer2-cursor"> Remove Address</a></p>
+            <p><strong>{{ address.address.street }}</strong> {{ address.address.street_number }} {{
+                address.address.region_name }}<a (click)="editAddress(address.id)" class="pointer-cursor"> Edit
+                    Address</a><a (click)="removeAddress(address.id)" class="pointer2-cursor"> Remove Address</a></p>
 
         </div>
         <br>

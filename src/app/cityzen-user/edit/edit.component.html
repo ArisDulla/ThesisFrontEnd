@@ -1,0 +1,125 @@
+<div class="update-container">
+    <div class="update-form">
+        <div *ngIf="errorMessage" class="error-message">
+            {{ errorMessage }}
+
+        </div>
+        <div *ngIf="successMessage" class="success-message">
+            {{ successMessage }}
+        </div>
+
+        <br>
+
+        <a class="back-button" href="/cityzen-view-list">Go to BACK</a>
+
+        <br>
+        <br>
+
+        <ng-container>
+
+            <h1>Cityzen Edit</h1>
+            <form (submit)="updatePassport()">
+                <div class="form-group">
+                    <label>First name:</label>
+                    <input type="text" id="firstName" name="firstName" [(ngModel)]="cityzen.user.first_name" required>
+                </div>
+                <div class="form-group">
+                    <label>Last Name:</label>
+                    <input type="text" id="last_name" name="last_name" [(ngModel)]="cityzen.user.last_name" required>
+                </div>
+                <div class="form-group">
+                    <label>Username:</label>
+                    <input type="text" id="username" name="username" [(ngModel)]="cityzen.user.username" required>
+                </div>
+                <div class="form-group">
+                    <label>Email:</label>
+                    <input type="text" id="email" name="email" [(ngModel)]="cityzen.user.email" required>
+                </div>
+                <div class="form-group">
+                    <label>Create new password:</label>
+                    <input type="password" id="password" name="password" [(ngModel)]="cityzen.user.password"
+                        autocomplete="new-password">
+                </div>
+
+
+
+                <button type="submit">
+                    <span>Update</span>
+                    <i class="reload-icon"></i> </button>
+            </form>
+            <br>
+            <div *ngIf="successMessageNumber" class="success-message">
+                {{ successMessageNumber }}
+            </div>
+            <div *ngIf="errorMessageNumber" class="error-message">
+                {{ errorMessageNumber }}
+
+            </div>
+            <br>
+            <div *ngFor="let phoneNumber of phoneNumbers">
+                <div class="form-group">
+
+                    <label>Phone Number:</label>
+                    <input type="text" id="number" name="number" [(ngModel)]=" phoneNumber.number " required>
+                    <a (click)="saveNumber(phoneNumber.id,phoneNumber.number)" class="view-link"> UPDATE</a>
+                </div>
+            </div>
+            <br>
+            <a (click)="createAddress(cityzen.user.id)" class="pointer-cursor">Add Address</a>
+            <br>
+            <br>
+            <div *ngIf="successMessageAddress" class="success-message">
+                {{ successMessageAddress }}
+            </div>
+            <div *ngIf="errorMessageAddress" class="error-message">
+                {{ errorMessageAddress }}
+
+            </div>
+
+            <div *ngFor="let address of addresses">
+                <p>Όταν γίνεται save τα πεδία μετατρέπονται σε κεφαλαία γράμματα.</p>
+                <br>
+                <a (click)="removeAddress(address.id)" class="pointer-cursor"> Remove Address</a>
+                <br>
+                <br>
+                <div class="form-group">
+                    <form (ngSubmit)="submitForm(address)">
+                        <div class="form-group">
+                            <label for="number">Street:</label>
+                            <input type="text" id="street" name="street" [(ngModel)]="address.address.street" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="number">Street Number:</label>
+                            <input type="text" id="street_number" name="street_number"
+                                [(ngModel)]="address.address.street_number" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="number">Region Name:</label>
+                            <input type="text" id="region_name" name="region_name"
+                                [(ngModel)]="address.address.region_name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="number">Prefecture Name:</label>
+                            <input type="text" id="prefecture_name" name="prefecture_name"
+                                [(ngModel)]="address.address.prefecture_name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="number">Postal Code:</label>
+                            <input type="text" id="postal_code" name="postal_code"
+                                [(ngModel)]="address.address.postal_code" required>
+                        </div>
+                        <button type="submit">
+                            <span>Update</span>
+
+                        </button>
+                    </form>
+
+                </div>
+                <br>
+                <br>
+                <br>
+            </div>
+        </ng-container>
+
+    </div>
+</div>

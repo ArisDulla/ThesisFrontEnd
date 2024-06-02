@@ -46,8 +46,8 @@ export class EditAddressComponent implements OnInit {
         //
         // Error of Fields 
         //
-        for (const field in error.error) {
-          errorMessage += field + " " + error.error[field][0] + '\n';
+        for (const field in error.error.address) {
+          errorMessage += field + " " + error.error.address[field] + '\n';
 
         }
 
@@ -60,7 +60,7 @@ export class EditAddressComponent implements OnInit {
 
   getaddressOfUser() {
     this.authService.getAddressOfUser(this.address_id).subscribe((res: any) => {
-      
+
       this.userData = res;
     },
       (error: any) => {
