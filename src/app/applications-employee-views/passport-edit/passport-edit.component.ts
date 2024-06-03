@@ -29,7 +29,7 @@ export class PassportEditComponent implements OnInit {
     this.applicationId = navigation.applicationId;
     this.getPassport();
 
-    this.authService.$refreshTokenReceived.subscribe(() => {
+    this.auth.$refreshTokenReceived.subscribe(() => {
       this.getPassport();
     });
 

@@ -53,7 +53,7 @@ export class IssuancePassportEditComponent implements OnInit {
       this.errorMessage = null;
 
       this.getIssuancePassport();
-      this.authService.$refreshTokenReceived.subscribe(() => {
+      this.auth.$refreshTokenReceived.subscribe(() => {
         this.getIssuancePassport();
       });
 

@@ -1,9 +1,7 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
-import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http'; import { Subject } from 'rxjs';
 import { Observable } from 'rxjs';
-import { AuthService } from '../../authentication/services/auth.service'
 
 @Injectable({
   providedIn: 'root'
@@ -12,14 +10,7 @@ export class PassportViewService {
 
   apiUrl: string = environment.baseUrl;
 
-  public $refreshToken = new Subject<boolean>;
-  public $refreshTokenReceived = new Subject<boolean>;
-
-  constructor(private http: HttpClient, private router: Router, private auth: AuthService) {
-    this.$refreshToken.subscribe((res: any) => {
-      auth.refreshToken();
-    });
-  }
+  constructor(private http: HttpClient) { }
 
   //
   // GET LIST Issuance Passport

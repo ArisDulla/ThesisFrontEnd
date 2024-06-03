@@ -26,7 +26,7 @@ export class IssuancePassportAllListComponent implements OnInit {
     this.variables_user = this.auth.getRoleUser();
     this.type_user = this.variables_user.type_user
 
-    this.authService.$refreshTokenReceived.subscribe(() => {
+    this.auth.$refreshTokenReceived.subscribe(() => {
       this.getIssuancePassport();
     });
 

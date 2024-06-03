@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
-import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Subject } from 'rxjs';
 import { Observable } from 'rxjs';
 import { AuthService } from '../../authentication/services/auth.service'
 
@@ -14,14 +12,7 @@ export class EmployeeService {
   variables_user: any = null;
   type_user: string | null = null;
 
-  public $refreshToken = new Subject<boolean>;
-  public $refreshTokenReceived = new Subject<boolean>;
-
-  constructor(private http: HttpClient, private router: Router, private auth: AuthService) {
-    this.$refreshToken.subscribe((res: any) => {
-      auth.refreshToken();
-    });
-  }
+  constructor(private http: HttpClient, private auth: AuthService) { }
   //
   // GET LIST Issuance Passport
   //

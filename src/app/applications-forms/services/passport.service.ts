@@ -2,8 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 import { Router } from '@angular/router';
-import { HttpHeaders } from '@angular/common/http';
-import { Subject } from 'rxjs';
 import { Observable } from 'rxjs';
 
 @Injectable({

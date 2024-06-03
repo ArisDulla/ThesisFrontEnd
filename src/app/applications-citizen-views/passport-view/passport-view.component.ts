@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { PassportViewService } from '../services/passport-view.service'
 import { Router } from '@angular/router';
+import { AuthService } from '../../authentication/services/auth.service'
 
 @Component({
   selector: 'app-passport-view',
@@ -13,12 +14,12 @@ export class PassportViewComponent {
   errorMessage: string | null = null;
 
 
-  constructor(private authService: PassportViewService, private router: Router) { }
+  constructor(private auth: AuthService, private authService: PassportViewService, private router: Router) { }
 
   ngOnInit(): void {
     this.getPassport();
 
-    this.authService.$refreshTokenReceived.subscribe(() => {
+    this.auth.$refreshTokenReceived.subscribe(() => {
       this.getPassport();
     });
 

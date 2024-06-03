@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { EmployeeService } from '../services/employee.service'
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
+import { AuthService } from '../../authentication/services/auth.service'
 
 @Component({
   selector: 'app-passport-all',
@@ -11,14 +12,14 @@ import { ActivatedRoute } from '@angular/router';
 export class PassportAllComponent implements OnInit {
   passportList: any[] = [];
 
-  constructor(private authService: EmployeeService, private router: Router, private route: ActivatedRoute) { }
+  constructor(private auth: AuthService, private authService: EmployeeService, private router: Router, private route: ActivatedRoute) { }
 
 
   ngOnInit(): void {
 
     this.getAllPassport();
 
-    this.authService.$refreshTokenReceived.subscribe(() => {
+    this.auth.$refreshTokenReceived.subscribe(() => {
       this.getAllPassport();
     });
 

@@ -33,7 +33,7 @@ export class PassportViewComponent implements OnInit {
 
     this.getPassport();
 
-    this.authService.$refreshTokenReceived.subscribe(() => {
+    this.auth.$refreshTokenReceived.subscribe(() => {
       this.getPassport();
     });
 

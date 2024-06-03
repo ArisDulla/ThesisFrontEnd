@@ -3,6 +3,7 @@ import { PassportViewService } from '../services/passport-view.service'
 import { Router } from '@angular/router';
 import { DatePipe } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
+import { AuthService } from '../../authentication/services/auth.service'
 
 @Component({
   selector: 'app-issuance-passport-list',
@@ -14,12 +15,12 @@ export class IssuancePassportListComponent {
   successMessage: string | null = null;
   errorMessage: string | null = null;
 
-  constructor(private authService: PassportViewService, private router: Router, private datePipe: DatePipe, private route: ActivatedRoute) { }
+  constructor(private auth: AuthService, private authService: PassportViewService, private router: Router, private datePipe: DatePipe, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.getIssuancePassport();
 
-    this.authService.$refreshTokenReceived.subscribe(() => {
+    this.auth.$refreshTokenReceived.subscribe(() => {
       this.getIssuancePassport();
     });
 
