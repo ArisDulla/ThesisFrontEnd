@@ -23,6 +23,10 @@ export class LoginComponent {
       password: ['', Validators.required]
     });
 
+    const tokenString = localStorage.getItem('refreshToken')
+    if (tokenString) {
+      this.authService.verifyToken().subscribe((res: any) => { });
+    }
     //
     // Error Message
     // 

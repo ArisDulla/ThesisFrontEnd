@@ -44,6 +44,7 @@ export class PassportViewComponent implements OnInit {
 
       //console.log(res)
       this.passportDetails = res;
+      this.errorMessage = null;
       this.flag = true;
     },
       (error: any) => {
