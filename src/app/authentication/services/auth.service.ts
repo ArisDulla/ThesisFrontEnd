@@ -281,7 +281,12 @@ export class AuthService {
   //
   // Get All Departments
   //
-  getAllDepartments() {
+  getAllDepartments(url?: string): Observable<any> {
+    const requestUrl = url || (this.apiUrl + "api/departments/");
+    return this.http.get<any>(requestUrl);
+  }
+
+  getAllDepartmentsList(): Observable<any> {
     return this.http.get<any>(this.apiUrl + "api/departments/get_all/")
   }
 

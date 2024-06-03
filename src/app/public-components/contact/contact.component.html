@@ -6,14 +6,18 @@
         <ng-container *ngIf="departments && departments.length > 0">
             <h1>Departments Information</h1>
         </ng-container>
-        <div *ngFor="let department of departments; let i = index">
-            <h2>Department {{ i + 1 }}</h2>
+        <div *ngFor="let department of departments">
+            <h2>Department </h2>
             <p><strong>Name:</strong> {{ department.name }}</p>
             <p><strong>Address:</strong> {{ department.address }}</p>
             <p><strong>Phone Number: </strong> <a href="tel:{{ department.phone_number }}">{{ department.phone_number
                     }}</a></p>
             <p><strong>Email: </strong> <a href="mailto:{{ department.email }}">{{ department.email }}</a></p> <br>
             <br>
+        </div>
+        <div>
+            <button *ngIf="previousPage" (click)="onPreviousPage()">Previous Page</button>
+            <button *ngIf="nextPage" (click)="onNextPage()">Next Page</button>
         </div>
     </div>
 </div>

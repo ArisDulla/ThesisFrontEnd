@@ -169,7 +169,7 @@ export class EditUserComponent implements OnInit {
   //
   getAllDepartments() {
 
-    this.authService.getAllDepartments().subscribe((res: any) => {
+    this.authService.getAllDepartmentsList().subscribe((res: any) => {
       this.departments = res;
 
     },

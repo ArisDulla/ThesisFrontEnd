@@ -12,6 +12,8 @@ export class ContactComponent implements OnInit {
 
   departments: any[] = [];
   errorMessage: string | null = null;
+  nextPage: string | null = null;
+  previousPage: string | null = null;
 
   ngOnInit(): void {
     this.getAllDepartments();
@@ -19,15 +21,27 @@ export class ContactComponent implements OnInit {
   //
   // Get All Departments
   //
-  getAllDepartments() {
-
-    this.authService.getAllDepartments().subscribe((res: any) => {
-      this.departments = res;
-
+  getAllDepartments(url?: string) {
+    this.authService.getAllDepartments(url).subscribe((res: any) => {
+      this.departments = res.results;
+      this.nextPage = res.next;
+      this.previousPage = res.previous;
     },
       (error: any) => {
-        this.errorMessage = 'Oops! Something went wrong'
-
+        this.errorMessage = 'Oops! Something went wrong';
       });
   }
+
+  onNextPage() {
+    if (this.nextPage) {
+      this.getAllDepartments(this.nextPage);
+    }
+  }
+
+  onPreviousPage() {
+    if (this.previousPage) {
+      this.getAllDepartments(this.previousPage);
+    }
+  }
+
 }
