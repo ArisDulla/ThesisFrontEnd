@@ -12,6 +12,7 @@ export class ViewUserComponent implements OnInit {
   userData: any;
   errorMessage: string | null = null;
   errorMessage2: string | null = null;
+  successMessage2: string | null = null;
   errorMessage3: string | null = null;
   errorMessagePassword: string | null = null;
   successMessagePassword: string | null = null;
@@ -25,7 +26,7 @@ export class ViewUserComponent implements OnInit {
   departments: any[] = [];
   phoneNumbers: any[] = [];
   addresses: any[] = [];
-
+  successMessage3: string | null = null;
   type_user: string | null = null;
   variables_user: any = null;
 
@@ -50,8 +51,6 @@ export class ViewUserComponent implements OnInit {
       // GET NUMBERS OF USER
       //
       this.authService.getNumbersOfUser().subscribe((res: any) => {
-
-        //console.log(res)
 
         this.phoneNumbers = res;
 
@@ -108,7 +107,7 @@ export class ViewUserComponent implements OnInit {
       });
     },
       (error: any) => {
-        console.log(error.error)
+
         this.successMessagePassword = null;
         if (error.error) {
           let errorMessage: string = '';
@@ -137,7 +136,8 @@ export class ViewUserComponent implements OnInit {
   async removeNumberOfUser(phoneNumber_id: any): Promise<void> {
     this.authService.removeNumberOfUser(phoneNumber_id).subscribe((res: any) => {
 
-      window.location.reload();
+      this.getViewUser();
+      this.successMessage2 = 'Number removed successfully'
       this.errorMessage2 = null
     },
       (error: any) => {
@@ -152,7 +152,8 @@ export class ViewUserComponent implements OnInit {
   async removeAddress(address_id: any): Promise<void> {
     this.authService.removeAddress(address_id).subscribe((res: any) => {
 
-      window.location.reload();
+      this.getViewUser();
+      this.successMessage3 = 'Address removed successfully'
       this.errorMessage3 = null
     },
       (error: any) => {

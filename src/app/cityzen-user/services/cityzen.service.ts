@@ -28,7 +28,7 @@ export class CityzenService {
   }
 
   getNumbers(cityzenId: any): Observable<any> {
-    return this.http.get<any>(`${this.apiUrl}api/phoneNumber/list-employee/${cityzenId}/`)
+    return this.http.get<any>(`${this.apiUrl}api/userPhoneNumber/list-employee/${cityzenId}/`)
   }
 
   getAddressesOfUser(cityzenId: any): Observable<any> {

@@ -97,8 +97,8 @@ export class EditComponent implements OnInit {
       //
       // Error of Fields 
       //
-      for (const field in error.error) {
-        errorMessage += field + " " + error.error[field][0] + '\n';
+      for (const field in error.error.phoneNumber) {
+        errorMessage += field + " " + error.error.phoneNumber[field] + '\n';
 
       }
 
@@ -113,7 +113,7 @@ export class EditComponent implements OnInit {
       this.successMessageAddress = "Address updated successfully";
       this.errorMessageAddress = null;
       this.getCityzen();
-      window.scrollTo(0, 450);
+      window.scrollTo(0, 750);
     },
       (error: any) => {
         //console.log(error)
@@ -136,17 +136,33 @@ export class EditComponent implements OnInit {
 
     await this.router.navigate(['/add-address'], { state: { userId: userId, cityzenId: this.cityzenId } });
   }
+  async createPhoneNumber(userId: string): Promise<void> {
+
+    await this.router.navigate(['/add-phone-number'], { state: { userId: userId, cityzenId: this.cityzenId } });
+  }
 
   async removeAddress(address_id: any): Promise<void> {
     this.auth.removeAddress(address_id).subscribe((res: any) => {
 
       this.getCityzen();
       this.errorMessageAddress = null
-
+      this.successMessageAddress = 'Address removed successfully'
+      window.scrollTo(0, 750);
     },
       (error: any) => {
         this.successMessageAddress = null
         this.errorMessageAddress = 'Oops! Something went wrong '
+      });
+  }
+  async removeNumberOfUser(phoneNumber_id: any): Promise<void> {
+    this.auth.removeNumberOfUser(phoneNumber_id).subscribe((res: any) => {
+
+      this.getCityzen();
+      this.successMessageNumber = 'Number removed successfully'
+      this.errorMessageNumber = null
+    },
+      (error: any) => {
+        this.errorMessageNumber = 'Oops! Something went wrong '
       });
   }
 

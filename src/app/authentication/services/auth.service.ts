@@ -387,14 +387,14 @@ export class AuthService {
   // Get all Numbers Of User
   // 
   getNumbersOfUser(): Observable<any> {
-    return this.http.get<any>(this.apiUrl + "api/phoneNumber/list-user/")
+    return this.http.get<any>(this.apiUrl + "api/userPhoneNumber/list-user/")
   }
 
   //
   // Get 1 Number Of User
   // 
   getNumberOfUser(phoneNumber_id: any) {
-    return this.http.get<any>(`${this.apiUrl}api/phoneNumber/${phoneNumber_id}/`)
+    return this.http.get<any>(`${this.apiUrl}api/userPhoneNumber/${phoneNumber_id}/`)
 
   }
 
@@ -406,21 +406,38 @@ export class AuthService {
       'Content-Type': 'application/json',
     });
 
-    const body = { number: phoneNumber };
-    return this.http.put<any>(`${this.apiUrl}api/phoneNumber/${phoneNumber_id}/`, body, { headers })
+    const body = phoneNumber;
+    return this.http.put<any>(`${this.apiUrl}api/userPhoneNumber/${phoneNumber_id}/`, body, { headers })
 
   }
 
   //
   // Add New Number Of User
   //
-  addNewNumberOfUser(phoneNumber: any): Observable<any> {
+  addNewNumberOfUser(phoneNumber: any, userId: any): Observable<any> {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
     });
 
-    const body = { number: phoneNumber };
-    return this.http.post<any>(`${this.apiUrl}api/phoneNumber/`, body, { headers })
+    let phoneNumber_data = {}
+
+    if (userId) {
+
+      phoneNumber_data = {
+        'user': userId,
+        'phoneNumber': { "number": phoneNumber }
+      }
+
+    } else {
+
+      phoneNumber_data = {
+        'phoneNumber': { "number": phoneNumber }
+      }
+
+    }
+
+    const body = phoneNumber_data;
+    return this.http.post<any>(`${this.apiUrl}api/userPhoneNumber/`, body, { headers })
   }
 
   //
@@ -428,7 +445,7 @@ export class AuthService {
   //
   removeNumberOfUser(phoneNumber_id: any): Observable<any> {
 
-    return this.http.delete<any>(`${this.apiUrl}api/phoneNumber/${phoneNumber_id}/`)
+    return this.http.delete<any>(`${this.apiUrl}api/userPhoneNumber/${phoneNumber_id}/`)
   }
 
   //

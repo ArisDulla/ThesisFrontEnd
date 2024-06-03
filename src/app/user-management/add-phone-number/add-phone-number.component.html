@@ -11,11 +11,23 @@
             <div *ngIf="successMessage" class="success-message">
                 {{ successMessage }}
             </div>
-            <div class="update-form">
-                <a href="/view-user" class="button">
-                    Go BACK
-                </a>
-            </div>
+
+            <ng-container *ngIf="cityzenId == undefined">
+                <div class="update-form">
+                    <a href="/view-user" class="button">
+                        Go BACK
+                    </a>
+                </div>
+            </ng-container>
+            <ng-container *ngIf="cityzenId && this.type_user !== 'cityzen'">
+
+                <div class="update-form">
+                    <a *ngIf="cityzenId" (click)="editCityzen(cityzenId )" class="button">
+                        Go BACK
+                    </a>
+
+                </div>
+            </ng-container>
             <br>
             <h2>Add New Number</h2>
             <form (ngSubmit)="submitForm()">

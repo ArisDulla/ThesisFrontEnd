@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../authentication/services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-phone-number',
@@ -11,10 +12,21 @@ export class AddPhoneNumberComponent implements OnInit {
   successMessage: string | null = null;
   phoneNumber: string | null = null;
   firstErrorMessage: string | null = null;
+  userId: string | null = null;
+  cityzenId: string | null = null;
+  type_user: string | null = null;
+  variables_user: any = null;
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService, private route: Router) { }
 
   ngOnInit(): void {
+    const navigation = window.history.state;
+    this.userId = navigation.userId;
+    this.cityzenId = navigation.cityzenId;
+    this.variables_user = this.authService.getRoleUser();
+    this.type_user = this.variables_user.type_user
+
+
     this.authService.verifyToken().subscribe((res: any) => { }
       , (error: any) => {
         this.firstErrorMessage = 'Oops! Something went wrong'
@@ -23,11 +35,11 @@ export class AddPhoneNumberComponent implements OnInit {
 
   async submitForm() {
 
-    this.authService.addNewNumberOfUser(this.phoneNumber).subscribe((res: any) => {
+    this.authService.addNewNumberOfUser(this.phoneNumber, this.userId).subscribe((res: any) => {
 
       this.successMessage = "Number created successfully";
       this.errorMessage = null;
-
+      this.phoneNumber = null;
     },
       (error: any) => {
 
@@ -36,8 +48,8 @@ export class AddPhoneNumberComponent implements OnInit {
         //
         // Error of Fields 
         //
-        for (const field in error.error) {
-          errorMessage += field + " " + error.error[field][0] + '\n';
+        for (const field in error.error.phoneNumber) {
+          errorMessage += field + " " + error.error.phoneNumber[field] + '\n';
 
         }
 
@@ -45,5 +57,8 @@ export class AddPhoneNumberComponent implements OnInit {
 
       });
 
+  }
+  async editCityzen(cityzenId: string): Promise<void> {
+    await this.route.navigate(['/cityzen-edit'], { state: { cityzenId: cityzenId } });
   }
 } 

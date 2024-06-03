@@ -48,6 +48,8 @@
                     <i class="reload-icon"></i> </button>
             </form>
             <br>
+            <a (click)="createPhoneNumber(cityzen.user.id)" class="pointer-cursor">Add Phone Number</a>
+            <br>
             <div *ngIf="successMessageNumber" class="success-message">
                 {{ successMessageNumber }}
             </div>
@@ -57,11 +59,16 @@
             </div>
             <br>
             <div *ngFor="let phoneNumber of phoneNumbers">
+
                 <div class="form-group">
 
                     <label>Phone Number:</label>
-                    <input type="text" id="number" name="number" [(ngModel)]=" phoneNumber.number " required>
-                    <a (click)="saveNumber(phoneNumber.id,phoneNumber.number)" class="view-link"> UPDATE</a>
+                    <a (click)="removeNumberOfUser(phoneNumber.id)" class="view-link"> Remove </a>
+
+                    <input type="text" id="number" name="number" [(ngModel)]=" phoneNumber.phoneNumber.number "
+                        required>
+
+                    <a (click)="saveNumber(phoneNumber.id,phoneNumber)" class="view-link"> UPDATE</a>
                 </div>
             </div>
             <br>

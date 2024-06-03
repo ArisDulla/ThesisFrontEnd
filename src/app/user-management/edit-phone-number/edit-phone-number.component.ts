@@ -35,7 +35,7 @@ export class EditPhoneNumberComponent implements OnInit {
   }
   async submitForm() {
 
-    this.authService.updateNumberOfUser(this.phoneNumber_id, this.phoneNumber.number).subscribe((res: any) => {
+    this.authService.updateNumberOfUser(this.phoneNumber_id, this.phoneNumber).subscribe((res: any) => {
 
       this.successMessage = "Number updated successfully";
       this.errorMessage = null;
@@ -48,8 +48,8 @@ export class EditPhoneNumberComponent implements OnInit {
         //
         // Error of Fields 
         //
-        for (const field in error.error) {
-          errorMessage += field + " " + error.error[field][0] + '\n';
+        for (const field in error.error.phoneNumber) {
+          errorMessage += field + " " + error.error.phoneNumber[field] + '\n';
 
         }
 
