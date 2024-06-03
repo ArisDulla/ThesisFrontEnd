@@ -9,9 +9,21 @@
         <div *ngFor="let department of departments">
             <h2>Department </h2>
             <p><strong>Name:</strong> {{ department.name }}</p>
-            <p><strong>Address:</strong> {{ department.address }}</p>
-            <p><strong>Phone Number: </strong> <a href="tel:{{ department.phone_number }}">{{ department.phone_number
-                    }}</a></p>
+            <p><strong>Address:</strong>
+                {{ department.address ?
+                department.address.street + " " + department.address.street_number + " " +
+                department.address.region_name + " " + department.address.prefecture_name + " " +
+                department.address.postal_code
+                :
+                ""
+                }}
+            </p>
+            <p><strong>Phone Number: </strong>
+                <a href="tel:{{ department.phone_number ? department.phone_number.number : '' }}">
+                    {{ department.phone_number ? department.phone_number.number : '' }}
+                </a>
+            </p>
+
             <p><strong>Email: </strong> <a href="mailto:{{ department.email }}">{{ department.email }}</a></p> <br>
             <br>
         </div>
