@@ -17,13 +17,13 @@ const routes: Routes = [
     path: 'issuance-view-employee-view',
     component: IssuancePassportListComponent,
     canActivate: [authGuard],
-    data: { allowedRoles: ['employeeYP01', 'employeeYP02'] }
+    data: { allowedRoles: ['employeeYP01', 'employeeYP02', 'employeeSEC'] }
   },
   {
     path: 'issuance-view-employee-all-view',
     component: IssuancePassportAllListComponent,
     canActivate: [authGuard],
-    data: { allowedRoles: ['employeeYP01', 'employeeYP02'] }
+    data: { allowedRoles: ['employeeYP01', 'employeeYP02', 'employeeSEC'] }
   },
   {
     path: 'passport-form',
